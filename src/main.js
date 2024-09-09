@@ -7,5 +7,3 @@ import tg from "./telegram.js";
 const app = createApp(App);
 
 app.use(store).use(router).use(tg).mount("#app");
-
-console.log(tg);

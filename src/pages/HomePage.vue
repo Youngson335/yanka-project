@@ -1,18 +1,20 @@
 <template>
   <main class="home container">
-    <div class="home__title">
-      <h1>Главная страница</h1>
-    </div>
-    <div class="home__content">
+    <Welcome />
+    <!-- <div class="home__content">
       <UserTgInfo />
-    </div>
+    </div> -->
   </main>
 </template>
 <script>
 import UserTgInfo from "@/components/UserTgInfo.vue";
+import Welcome from "@/components/Welcome.vue";
+import Description from "@/components/Modals/Description.vue";
 export default {
   components: {
     UserTgInfo,
+    Welcome,
+    Description,
   },
 };
 </script>
