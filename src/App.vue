@@ -1,6 +1,16 @@
 <template>
+  <HomePage />
   <router-view />
 </template>
+
+<script>
+import HomePage from "./pages/HomePage.vue";
+export default {
+  components: {
+    HomePage,
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
@@ -14,6 +24,9 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+body {
+  background-color: white;
 }
 .container {
   max-width: 600px;
