@@ -1,3 +1,4 @@
-const tg = window.Telegram.WebApp;
+let tg = window.Telegram.WebApp;
+tg.expand();
 
 export default tg;

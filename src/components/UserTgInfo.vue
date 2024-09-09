@@ -2,34 +2,35 @@
   <section class="user">
     <div class="user__name">
       <p>
-        Ваше имя: <strong>{{ userName }}</strong>
+        Ваше имя: <strong>{{ getUserName }}</strong>
       </p>
     </div>
     <div class="user__id">
       <p>
-        Ваш telegramID: <strong>{{ userId }}</strong>
+        Ваш telegramID: <strong>{{ getUserId }}</strong>
       </p>
     </div>
   </section>
 </template>
 <script>
+import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      userName: "",
-      userId: "",
+      userName: "Влад",
+      userId: "19",
     };
   },
-  methods: {
-    getUserInfoByTg() {
-      if (this.$tg.initDataUnsafe && this.$tg.initDataUnsafe.user) {
-        this.userName = this.$tg.initDataUnsafe.user.first_name;
-        this.userId = this.$tg.initDataUnsafe.user.id;
-      }
-    },
+  computed: {
+    ...mapGetters(["getUserId", "getUserName"]),
   },
+  methods: {
+    ...mapActions(["initUserTg"]),
+  },
+
   mounted() {
-    this.getUserInfoByTg();
+    this.initUserTg();
   },
 };
 </script>
