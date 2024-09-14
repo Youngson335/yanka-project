@@ -32,8 +32,14 @@ export default {
     padding: 5px 10px;
     font-size: 16px;
     border-radius: 7px;
-    background: rgb(5 162 43 / 24%);
+    background: rgb(214 147 157);
     font-family: "Comfortaa", sans-serif;
+    color: white;
+    transition: all 0.4s ease;
+    &:disabled {
+      background: rgb(214 147 157 / 80%);
+      color: rgb(192 119 129 / 27%);
+    }
   }
 }
 </style>

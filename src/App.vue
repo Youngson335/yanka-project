@@ -6,7 +6,7 @@
   </transition>
   <HomePage v-if="!showDescription" />
   <div class="movie__back">
-    <video src="./assets/background/back2.mp4" autoplay muted loop></video>
+    <img src="./assets/background/back5.jpeg" alt="" />
   </div>
   <router-view />
 </template>
@@ -80,7 +80,7 @@ body {
   right: 0;
   z-index: -1;
   animation: hiddenBlur 3s ease;
-  & video {
+  & img {
     width: 100%;
     height: 100%;
     object-fit: cover;

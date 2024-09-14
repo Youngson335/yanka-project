@@ -36,7 +36,7 @@ export default {
     margin-bottom: 10px;
   }
   &__text {
-    color: rgba(52, 161, 78, 0.831372549);
+    color: rgb(214 147 157);
     font-size: 14px;
     max-width: 200px;
     text-align: start;

@@ -1,7 +1,9 @@
 <template>
   <div class="welcome">
     <div ref="welcomeTrue" class="welcome__title" v-if="stopGame === false">
-      <h1 ref="welcomeTitle">{{ getGreeting }}, {{ getUserName }}</h1>
+      <h1 ref="welcomeTitle">
+        {{ getGreeting }}, <span>{{ getUserName }}</span>
+      </h1>
     </div>
     <div class="welcome__stop" v-else>
       <h2>{{ getUserName }}, спокойной ночи! Возвращайся завтра😴</h2>
@@ -64,11 +66,15 @@ export default {
 </script>
 <style lang="scss">
 .welcome {
+  margin-bottom: 20px;
   & h1 {
     font-family: "Comforter Brush", cursive;
     font-size: 55px;
     line-height: 60px;
     animation: showTitle 0.8s ease;
+    span {
+      color: rgb(214, 147, 157);
+    }
     @keyframes showTitle {
       0% {
         transform: translateY(-200px);
