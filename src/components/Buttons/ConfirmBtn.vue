@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     saveStateModalDescription() {
-      localStorage.setItem("stateModal", this.getAccept);
+      localStorage.setItem("modalState", this.getAccept);
       this.$store.commit("setConfirmAccept", JSON.stringify(true));
     },
   },
