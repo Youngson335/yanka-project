@@ -1,5 +1,5 @@
 <template>
-  <div class="entry">
+  <div class="entry" v-if="showEntry === true">
     <p>Утро начинается не</p>
     <br />
     <p ref="lastChild">с кофе...</p>
@@ -11,13 +11,30 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      showEntry: false,
+      currentHour: new Date().getHours(),
+    };
+  },
+  methods: {
+    getCurrentHour() {
+      console.log(new Date().getHours());
+      if (this.currentHour < 23 && this.currentHour > 6) {
+        this.showEntry = true;
+      } else this.showEntry = false;
+    },
+  },
   mounted() {
-    setTimeout(() => {
-      this.$refs.lastChild.classList.add("active__child");
-    }, 800);
-    setTimeout(() => {
-      this.$refs.entryTwo.classList.add("first__active");
-    }, 1100);
+    this.getCurrentHour();
+    if (this.showEntry === true) {
+      setTimeout(() => {
+        this.$refs.lastChild.classList.add("active__child");
+      }, 800);
+      setTimeout(() => {
+        this.$refs.entryTwo.classList.add("first__active");
+      }, 1100);
+    }
   },
 };
 </script>
@@ -86,6 +103,7 @@ export default {
   width: 100%;
   flex-direction: column;
   display: none;
+  margin-bottom: 40px;
   @keyframes dopShowEntryBlock {
     0% {
       opacity: 0;

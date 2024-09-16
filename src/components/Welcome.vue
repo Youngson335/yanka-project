@@ -12,6 +12,7 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -37,6 +38,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions(["initUserTg"]),
     getGreeting() {
       const currentHour = new Date().getHours();
 
@@ -57,10 +59,12 @@ export default {
     },
   },
   mounted() {
-    if (this.$refs.welcomeTrue) {
+    if (this.$refs.welcomeTrue === true) {
       this.addDefaultClass();
     }
+    console.log(this.$refs.welcomeTrue);
     this.getGreeting;
+    this.initUserTg();
   },
 };
 </script>

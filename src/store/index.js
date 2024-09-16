@@ -10,8 +10,9 @@ export default createStore({
     yankaId: 1805077298,
     myId: 1491570929,
     featuredId: [1805077298, 1491570929],
-    accept: localStorage.getItem("stateModal") || false,
-    confirmAccept: JSON.parse(localStorage.getItem("stateModal")) || false,
+    accept: localStorage.getItem("modalState") || false,
+    confirmAccept: JSON.parse(localStorage.getItem("modalState")) || false,
+    confirmUser: false,
   },
   mutations: {
     setUserName(state, name) {
@@ -32,16 +33,19 @@ export default createStore({
     setConfirmAccept(state, val) {
       state.confirmAccept = val;
     },
+    setConfirmUser(state, val) {
+      state.confirmUser = val;
+    },
   },
   actions: {
     initUserTg({ commit, dispatch }) {
       // деплой версия
-      // if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
-      //   commit("setUserName", tg.initDataUnsafe.user.first_name);
-      //   commit("setUserID", tg.initDataUnsafe.user.id);
-      //   commit("setUserData", JSON.stringify(tg.initDataUnsafe));
-      //   dispatch("setUserPermission", commit);
-      // }
+      if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+        commit("setUserName", tg.initDataUnsafe.user.first_name);
+        commit("setUserID", tg.initDataUnsafe.user.id);
+        commit("setUserData", JSON.stringify(tg.initDataUnsafe));
+        dispatch("setUserPermission", commit);
+      }
       dispatch("setUserPermission", commit);
     },
     setUserPermission({ commit, state }) {
@@ -49,10 +53,10 @@ export default createStore({
       const featuredId = state.featuredId;
       const result = featuredId.find((id) => {
         if (id === userId) {
-          commit("setPermissionUser", true);
+          commit("setConfirmUser", true);
           return true;
         } else {
-          commit("setPermissionUser", false);
+          commit("setConfirmUser", false);
           return false;
         }
       });
@@ -70,6 +74,9 @@ export default createStore({
     },
     getConfirmAccept(state) {
       return state.confirmAccept;
+    },
+    getConfirmUser(state) {
+      return state.confirmUser;
     },
   },
   modules: {},

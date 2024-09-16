@@ -1,12 +1,18 @@
 <template>
-  <div class="description">
+  <div class="description" v-if="getConfirmUser === true">
     <div class="description__text">
       <p>
         Данное приложение доступно не всем и то, что вы сейчас можете им
-        пользоваться - это большая честь в первую очередь для автора!
+        пользоваться - это <span>большая честь</span> в первую очередь для
+        автора!
       </p>
       <p>
-        И ему так же хочется убедиться в том, что вы готовы уделять свое
+        Если вы попытаетесь поделиться данным приложением со своими
+        <span>близкими людьми</span> или <span>подругами</span>, то увы, данные
+        лица не смогут им полноценно воспользоваться!
+      </p>
+      <p>
+        Автору так же хочется убедиться в том, что вы готовы уделять свое
         внимание, пользуясь данным приложением!
       </p>
       <p>Будет прекрасно, если вы это подтвердите чуть ниже!)</p>
@@ -18,15 +24,38 @@
       <ConfirmBtn />
     </div>
   </div>
+  <div class="description" v-else>
+    <div class="description__text">
+      <p>
+        Данное приложение предназначено только для <span>особой девушки</span>.
+        Если вы сейчас читаете этот текст, значит, вы не являетесь таковой.
+      </p>
+      <p>
+        Если у вас возникли какие-то претензии к разработчику (ето я) - мне вас
+        жаль, так как мне <span>лучше не писать!</span> (мне есть с кем
+        пообщаться!)
+      </p>
+    </div>
+  </div>
 </template>
 <script>
 import ConfirmBtn from "../Buttons/ConfirmBtn.vue";
 import AcceptAgreement from "../AcceptAgreement.vue";
 import { mapGetters } from "vuex";
+import { mapActions } from "vuex";
 export default {
   components: {
     ConfirmBtn,
     AcceptAgreement,
+  },
+  computed: {
+    ...mapGetters(["getConfirmUser"]),
+  },
+  methods: {
+    ...mapActions(["initUserTg"]),
+  },
+  mounted() {
+    this.initUserTg();
   },
 };
 </script>
@@ -40,9 +69,15 @@ export default {
   color: rgba(0, 0, 0, 0.5803921569);
   animation: showDescriptionBlock 1s ease;
   &__text {
+    font-weight: 100;
     p {
       margin-bottom: 10px;
       text-align: start;
+    }
+    span {
+      color: rgb(214, 147, 157);
+      font-weight: 900;
+      text-decoration: underline;
     }
   }
   @keyframes showDescriptionBlock {
