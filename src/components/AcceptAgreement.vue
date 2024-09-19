@@ -22,7 +22,26 @@ export default {
   methods: {
     setAccept(val) {
       this.$store.commit("setAcceptCheck", !val);
+      if (this.audioBuffer) {
+        const source = this.audioContext.createBufferSource();
+        source.buffer = this.audioBuffer;
+        source.connect(this.gainNode);
+        source.start(0);
+      }
     },
+    async loadSound() {
+      const response = await fetch(require("@/assets/audio/fx/audio2.mp3"));
+      const arrayBuffer = await response.arrayBuffer();
+      this.audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+    },
+  },
+  async created() {
+    this.audioContext = new (window.AudioContext ||
+      window.webkitAudioContext)();
+    this.gainNode = this.audioContext.createGain();
+    this.gainNode.gain.value = 1.1;
+    this.gainNode.connect(this.audioContext.destination);
+    await this.loadSound();
   },
 };
 </script>
