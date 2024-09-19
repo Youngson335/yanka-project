@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import tg from "../telegram.js";
+import compliments from "./compliments.js";
 
 export default createStore({
   state: {
@@ -78,6 +79,11 @@ export default createStore({
     getConfirmUser(state) {
       return state.confirmUser;
     },
+    getCompliments(state) {
+      return state.compliments;
+    },
   },
-  modules: {},
+  modules: {
+    compliments,
+  },
 });

@@ -57,11 +57,16 @@ export default {
   color: #f4f0f0;
   background-color: rgb(0 0 0 / 45%);
   height: 100vh;
+  user-select: none;
 }
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  user-select: none;
+}
+button {
+  user-select: none;
 }
 body {
   overflow: hidden;

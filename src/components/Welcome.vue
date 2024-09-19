@@ -8,8 +8,12 @@
     <div class="welcome__stop" v-else>
       <h2>{{ getUserName }}, спокойной ночи! Возвращайся завтра😴</h2>
     </div>
+    <audio ref="backgroundAudio" loop>
+      <source src="../assets/audio/atmosphere.wav" type="audio/wav" />
+    </audio>
   </div>
 </template>
+
 <script>
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
@@ -39,35 +43,55 @@ export default {
   },
   methods: {
     ...mapActions(["initUserTg"]),
-    getGreeting() {
-      const currentHour = new Date().getHours();
-
-      if (currentHour >= 6 && currentHour < 12) {
-        return "Доброе утро";
-      } else if (currentHour >= 12 && currentHour < 17) {
-        return "Добрый день";
-      } else if (currentHour >= 17 && currentHour < 23) {
-        return "Добрый вечер";
-      } else {
-        return "Спокойной ночи";
-      }
-    },
     addDefaultClass() {
       setTimeout(() => {
         this.$refs.welcomeTitle.classList.add("default-state");
       }, 800);
     },
+    async postCompliment(id, newCompliment) {
+      const str = "ты просто супер";
+      fetch(`http://localhost:3000/compliments/${2}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ compliment: str }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Ошибка сети");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data.message);
+        })
+        .catch((error) =>
+          console.error("Ошибка при обновлении комплимента:", error)
+        );
+    },
   },
   mounted() {
-    if (this.$refs.welcomeTrue === true) {
+    if (this.$refs.welcomeTrue) {
       this.addDefaultClass();
     }
     console.log(this.$refs.welcomeTrue);
-    this.getGreeting;
     this.initUserTg();
+
+    // Установка громкости
+    this.$refs.backgroundAudio.volume = 0.1; // Установите громкость на 10%
+    console.log("Громкость аудио:", this.$refs.backgroundAudio.volume); // Проверка громкости
+
+    this.$refs.backgroundAudio.play().catch((error) => {
+      console.error("Ошибка воспроизведения аудио:", error);
+    });
+  },
+  created() {
+    this.postCompliment();
   },
 };
 </script>
+
 <style lang="scss">
 .welcome {
   margin-bottom: 20px;
