@@ -2,8 +2,8 @@
   <main class="home container">
     <Welcome />
     <EntryText />
-    <DateBtn />
-    <Card />
+    <DateBtn @editStateShowCard="editStateShowCard" />
+    <Card :showCard="showCard" v-if="showCard === true" />
   </main>
 </template>
 <script>
@@ -19,6 +19,16 @@ export default {
     EntryText,
     DateBtn,
     Card,
+  },
+  data() {
+    return {
+      showCard: false,
+    };
+  },
+  methods: {
+    editStateShowCard(val) {
+      this.showCard = val;
+    },
   },
 };
 </script>

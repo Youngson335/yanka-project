@@ -13,7 +13,7 @@ const mutations = {
 const actions = {
   async getCompliments({ commit }) {
     try {
-      const response = await fetch("http://localhost:3000/compliments");
+      const response = await fetch("http://localhost:8080/compliments");
       const data = await response.json();
       console.log(data);
       commit("setDataCompliments", data);
