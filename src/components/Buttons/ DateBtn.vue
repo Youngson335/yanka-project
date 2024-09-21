@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -24,7 +25,11 @@ export default {
       gainNode: null,
       audioBuffer: null,
       showBtn: true,
+      dateStorage: new Date().getDate(),
     };
+  },
+  computed: {
+    ...mapGetters(["getActiveDate"]),
   },
   methods: {
     getDate() {
@@ -50,15 +55,26 @@ export default {
         }, 1000);
         this.$emit("editStateShowCard", true);
       }
+      localStorage.setItem(`getCompliments${this.getActiveDate}`, true); //заменить
     },
     showInvitationBlock() {
-      this.$refs.invitationBlock.style.display = "block";
+      if (this.$refs.invitationBlock) {
+        this.$refs.invitationBlock.style.display = "block";
+      }
     },
   },
   mounted() {
     setTimeout(() => {
       this.showInvitationBlock();
     }, 1300);
+
+    localStorage.removeItem(`getCompliments${this.getActiveDate - 1}`); //заменить
+
+    if (localStorage.getItem(`getCompliments${this.getActiveDate}`) == "true") {
+      this.showBtn = false;
+    } else {
+      this.showBtn = true;
+    }
   },
   async created() {
     this.getDate();
