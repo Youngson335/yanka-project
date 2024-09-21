@@ -14,6 +14,7 @@ export default createStore({
     accept: localStorage.getItem("modalState") || false,
     confirmAccept: JSON.parse(localStorage.getItem("modalState")) || false,
     confirmUser: false,
+    activeDate: new Date().getDate(),
   },
   mutations: {
     setUserName(state, name) {
@@ -81,6 +82,9 @@ export default createStore({
     },
     getCompliments(state) {
       return state.compliments;
+    },
+    getActiveDate(state) {
+      return state.activeDate;
     },
   },
   modules: {

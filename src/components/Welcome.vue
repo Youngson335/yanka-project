@@ -48,28 +48,6 @@ export default {
         this.$refs.welcomeTitle.classList.add("default-state");
       }, 800);
     },
-    // async postCompliment(id, newCompliment) {
-    //   const str = "ты просто супер";
-    //   fetch(`http://localhost:8080/compliments/${2}`, {
-    //     method: "PUT",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ compliment: str }),
-    //   })
-    //     .then((response) => {
-    //       if (!response.ok) {
-    //         throw new Error("Ошибка сети");
-    //       }
-    //       return response.json();
-    //     })
-    //     .then((data) => {
-    //       console.log(data.message);
-    //     })
-    //     .catch((error) =>
-    //       console.error("Ошибка при обновлении комплимента:", error)
-    //     );
-    // },
   },
   mounted() {
     if (this.$refs.welcomeTrue) {

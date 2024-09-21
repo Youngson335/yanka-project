@@ -1,24 +1,30 @@
 <template>
-  <div class="card__block" v-if="showCard === true">
+  <div class="card__block">
     <div
       ref="card"
       class="card"
       v-for="card in checkCompliments"
       :key="card.id"
       :class="{
-        'is-flipped': flippedCards.includes(card.id),
+        'is-flipped':
+          flippedCards.includes(card.id) ||
+          (card.id === selectedCardId && !canFlip),
         'is-selected': selectedCardId === card.id,
         'is-hidden': selectedCardId && selectedCardId !== card.id,
       }"
-      @click="flipCard(card.id)"
+      @click="canFlip ? flipCard(card.id) : null"
     >
       <div class="card__inner">
         <div class="card__front">
           <p class="card__text">Выбрать</p>
         </div>
         <div class="card__back">
-          <p class="card__compliment--p">{{ card.compliment }}</p>
-          <img src="../assets/gifs/cat__two.gif" alt="" />
+          <div class="card__back--text">
+            <p>{{ card.compliment }}</p>
+          </div>
+          <div class="card__back--image">
+            <img src="../assets/gifs/cat__two.gif" alt="" />
+          </div>
         </div>
       </div>
     </div>
@@ -27,33 +33,74 @@
 
 <script>
 import { nextTick } from "vue";
-
 import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
       flippedCards: [],
       selectedCardId: null,
       showCard: false,
+      canFlip: true, // новое свойство для контроля возможности выбора карточки
+      dateStorage: new Date().getDate(),
+      openCard: null,
     };
   },
   computed: {
-    ...mapGetters(["getCompliments"]),
+    ...mapGetters(["getCompliments", "getActiveDate"]),
     checkCompliments() {
-      return this.getCompliments.compliments;
+      const date = new Date();
+      localStorage.setItem(
+        `compliments`,
+        JSON.stringify(this.getCompliments.compliments)
+      );
+      return JSON.parse(localStorage.getItem("compliments"));
     },
   },
   methods: {
+    async loadSound() {
+      const response = await fetch(require("@/assets/audio/fx/audio4.mp3"));
+      const arrayBuffer = await response.arrayBuffer();
+      this.audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+    },
     flipCard(id) {
+      if (this.audioBuffer) {
+        const source = this.audioContext.createBufferSource();
+        source.buffer = this.audioBuffer;
+        source.connect(this.gainNode);
+        source.start(0);
+      }
+      this.$emit("showNot", true);
+
+      localStorage.setItem(`openCard${this.getActiveDate}`, true);
+
       if (!this.flippedCards.includes(id)) {
         this.flippedCards.push(id);
       }
-
+      localStorage.setItem(`selectedCardId${this.getActiveDate}`, id);
       this.selectedCardId = id;
+
+      const activeCard = JSON.parse(localStorage.getItem("compliments"));
+      const result = activeCard.find((item) => item.id === id);
+      if (result) {
+        result.show = 1;
+        localStorage.setItem("compliments", JSON.stringify(activeCard));
+      } else {
+        console.log("Карточка не найдена");
+      }
 
       setTimeout(() => {
         this.flippedCards = this.flippedCards.filter((cardId) => cardId === id);
       }, 500);
+    },
+    checkActiveCard() {
+      const activeCard = JSON.parse(localStorage.getItem("compliments"));
+      const selected = activeCard.find((card) => card.show === 1);
+      if (selected) {
+        this.selectedCardId = selected.id;
+        this.canFlip = false; // отключаем возможность выбора
+        this.flippedCards.push(selected.id); // добавляем активную карточку в flippedCards, чтобы показать ее заднюю сторону
+      }
     },
     animationCard() {
       setTimeout(() => {
@@ -66,18 +113,54 @@ export default {
             setTimeout(() => {
               card.classList.add("card__animate");
             }, index * 200);
+            setTimeout(() => {
+              card.classList.remove("card__animate");
+              card.style.display = "block";
+            }, 3000);
           });
         }
       });
     },
   },
   mounted() {
+    localStorage.removeItem(`openCard${this.getActiveDate - 1}`);
+    localStorage.removeItem(`selectedCardId${this.getActiveDate - 1}`);
+    console.log("вывел");
     setTimeout(() => {
       nextTick(() => {
-        this.showCard = true;
-        this.animationCard();
+        // Проверяем, открыта ли карточка на сегодня
+        const openCardStatus = localStorage.getItem(
+          `openCard${this.getActiveDate}`
+        );
+        if (openCardStatus === "true") {
+          this.openCard = "true"; // устанавливаем состояние открытой карточки
+          this.checkActiveCard(); // проверяем активную карточку при монтировании
+          this.canFlip = false; // отключаем возможность выбора
+        } else {
+          this.openCard = null; // сбрасываем состояние открытой карточки
+          this.canFlip = true; // разрешаем выбор карточек
+        }
+        if (
+          localStorage.getItem(`selectedCardId${this.getActiveDate}`) !== null
+        ) {
+          setTimeout(() => {
+            this.selectedCardId = Number(
+              localStorage.getItem(`selectedCardId${this.getActiveDate}`)
+            );
+          }, 1000);
+        } else {
+          this.animationCard();
+        }
       });
     }, 1000);
+  },
+  async created() {
+    this.audioContext = new (window.AudioContext ||
+      window.webkitAudioContext)();
+    this.gainNode = this.audioContext.createGain();
+    this.gainNode.gain.value = 0.2;
+    this.gainNode.connect(this.audioContext.destination);
+    await this.loadSound();
   },
 };
 </script>
@@ -126,6 +209,21 @@ export default {
   &__back {
     background-color: #fff;
     transform: rotateY(180deg);
+    &--text {
+      font-size: 20px;
+      font-weight: 900;
+      text-align: start;
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+    &--image {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      & img {
+        width: 70px;
+      }
+    }
   }
 
   &.is-flipped .card__inner {
@@ -140,7 +238,7 @@ export default {
   }
 
   &.is-hidden {
-    display: none;
+    display: none !important;
     visibility: hidden;
     transition: opacity 0.5s ease;
   }
@@ -149,6 +247,9 @@ export default {
   animation: showCard 0.7s ease;
   transition: all 0.5s ease;
   display: flex !important;
+}
+.is-selected {
+  animation: showCard 0.7s ease;
 }
 @keyframes showCard {
   0% {
