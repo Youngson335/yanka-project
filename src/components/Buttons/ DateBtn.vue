@@ -48,6 +48,7 @@ export default {
         setTimeout(() => {
           this.showBtn = false;
         }, 1000);
+        this.$emit("editStateShowCard", true);
       }
     },
     showInvitationBlock() {
