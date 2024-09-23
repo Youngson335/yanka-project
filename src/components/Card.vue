@@ -23,8 +23,9 @@
             <p>{{ card.compliment }}</p>
           </div>
           <div class="card__back--image">
-            <img src="../assets/gifs/cat__two.gif" alt="" />
+            <img :src="card.img" alt="" />
           </div>
+          <img class="card__trava" src="../assets/gifs/trava.gif" alt="" />
         </div>
       </div>
     </div>
@@ -209,6 +210,7 @@ export default {
   &__back {
     background-color: #fff;
     transform: rotateY(180deg);
+    overflow: hidden;
     &--text {
       font-size: 20px;
       font-weight: 900;
@@ -224,6 +226,14 @@ export default {
         width: 70px;
       }
     }
+  }
+  &__trava {
+    width: 100%;
+    position: absolute;
+    top: -16px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
   }
 
   &.is-flipped .card__inner {
