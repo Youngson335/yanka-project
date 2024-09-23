@@ -1,10 +1,30 @@
 import { createStore } from "vuex";
+import img1 from "../assets/gifs/cat__two.gif";
+import img2 from "../assets/gifs/popugay.gif";
+import img3 from "../assets/gifs/cat5.gif";
+import img4 from "../assets/gifs/cat4.gif";
+import img5 from "../assets/gifs/cat__one.gif";
 
 const state = {
   compliments: [
-    { id: 1, compliment: "Ты очень классно выглядишь сегодня!", show: 0 },
-    { id: 2, compliment: "Тебе идет улыбка!)", show: 0 },
-    { id: 3, compliment: "Хорошего дня!", show: 0 },
+    {
+      id: 1,
+      compliment: "Забей на хомяка, ты нормально зарабатываешь!",
+      show: 0,
+      img: img4,
+    },
+    {
+      id: 2,
+      compliment: "Ты слишком... не выразить словами",
+      show: 0,
+      img: img4,
+    },
+    {
+      id: 3,
+      compliment: "Делая - делай, не делая - не делай!",
+      show: 0,
+      img: img4,
+    },
   ],
 };
 

@@ -1,10 +1,13 @@
 <template>
   <main class="home container">
-    <Welcome />
-    <EntryText />
-    <DateBtn @editStateShowCard="editStateShowCard" />
-    <Card :showCard="showCard" v-if="showCard === true" @showNot="showNot" />
-    <Notification v-if="showNotification" />
+    <StartApp @startApp="startApp" />
+    <div class="upload__game" v-if="showApp === true">
+      <Welcome />
+      <EntryText />
+      <DateBtn @editStateShowCard="editStateShowCard" />
+      <Card :showCard="showCard" v-if="showCard === true" @showNot="showNot" />
+      <Notification v-if="showNotification" />
+    </div>
   </main>
 </template>
 <script>
@@ -15,6 +18,7 @@ import DateBtn from "@/components/Buttons/ DateBtn.vue";
 import Card from "@/components/Card.vue";
 import { mapGetters } from "vuex";
 import Notification from "@/components/Notification.vue";
+import StartApp from "@/components/StartApp.vue";
 export default {
   components: {
     Welcome,
@@ -23,17 +27,22 @@ export default {
     DateBtn,
     Card,
     Notification,
+    StartApp,
   },
   data() {
     return {
       showCard: false,
       showNotification: false,
+      showApp: false,
     };
   },
   computed: {
     ...mapGetters(["getActiveDate"]),
   },
   methods: {
+    startApp() {
+      this.showApp = true;
+    },
     showNot() {
       this.showNotification = true;
     },
@@ -48,6 +57,11 @@ export default {
       this.showCard = true;
     } else {
       this.showCard = false;
+    }
+    if (this.showCard === true) {
+      this.showNotification = true;
+    } else {
+      this.showNotification = false;
     }
     localStorage.removeItem(`openCard${this.getActiveDate - 1}`);
     localStorage.removeItem(`selectedCardId${this.getActiveDate - 1}`);

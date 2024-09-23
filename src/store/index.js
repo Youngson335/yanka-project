@@ -10,11 +10,12 @@ export default createStore({
     userData: "",
     yankaId: 1805077298,
     myId: 1491570929,
-    featuredId: [1805077298, 1491570929],
+    featuredId: [1805077298, 1491570929, 1427340491],
     accept: localStorage.getItem("modalState") || false,
     confirmAccept: JSON.parse(localStorage.getItem("modalState")) || false,
     confirmUser: false,
     activeDate: new Date().getDate(),
+    temaID: 1427340491,
   },
   mutations: {
     setUserName(state, name) {
