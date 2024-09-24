@@ -1,10 +1,12 @@
 <template>
   <div ref="start" class="start" v-if="showBtn === true">
     <div class="start__btn" @click="startGames">
-      <button>
-        {{ startText }}
-        <img src="../assets/gifs/trava.gif" alt="" />
-      </button>
+      <div class="start__btn--block">
+        <button>
+          {{ startText }}
+        </button>
+        <img src="../assets/icons/time.png" alt="" />
+      </div>
     </div>
   </div>
 </template>
@@ -72,25 +74,34 @@ export default {
     justify-content: center;
     align-items: center;
     height: 90%;
-    & button {
+    &--block {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 10px 20px;
+      width: calc(100% - 50px);
+      background: #e5e5e517;
+      border-radius: 25px;
+      max-width: 250px;
+      background-image: url(../assets/icons/trava_1.png);
+      background-position: bottom;
+      background-size: contain;
+      background-repeat: repeat;
+      border: 1px solid #c2c2c2;
+    }
+    & img {
+      width: 40px;
+    }
+
+    & button {
       border-radius: 25px;
       border: none;
-      width: calc(100% - 50px);
       font-size: 22px;
       font-family: "Comfortaa", sans-serif;
       transition: all 0.5s ease;
-      color: #4b4848;
-      position: relative;
-      padding-bottom: 23px;
-      overflow: hidden;
+      color: rgb(233, 233, 233);
       font-weight: bold;
-      & img {
-        position: absolute;
-        left: 0;
-        width: 100%;
-        bottom: -2px;
-      }
+      background: none;
       &:active {
         scale: 0.9;
         transition: all 0.5s ease;
