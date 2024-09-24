@@ -23,6 +23,11 @@
     <div class="description__button">
       <ConfirmBtn />
     </div>
+    <img
+      class="description__image"
+      src="../../assets/icons/trava_3.png"
+      alt=""
+    />
   </div>
   <div class="description" v-else>
     <div class="description__text">
@@ -60,6 +65,10 @@ export default {
 };
 </script>
 <style lang="scss">
+@mixin position() {
+  position: relative;
+  z-index: 2;
+}
 .description {
   width: 100%;
   max-width: 350px;
@@ -68,6 +77,7 @@ export default {
   border-radius: 10px;
   color: rgba(0, 0, 0, 0.5803921569);
   animation: showDescriptionBlock 1s ease;
+  position: relative;
   &__text {
     font-weight: 100;
     p {
@@ -79,6 +89,21 @@ export default {
       font-weight: 900;
       text-decoration: underline;
     }
+  }
+  &__form {
+    @include position();
+  }
+  &__button {
+    @include position();
+  }
+  &__image {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.2;
+    z-index: 1;
   }
   @keyframes showDescriptionBlock {
     0% {

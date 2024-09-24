@@ -19,6 +19,7 @@
           <p class="card__text">Выбрать</p>
         </div>
         <div class="card__back">
+          <img class="card__trava2" src="../assets/icons/trava_2.png" alt="" />
           <div class="card__back--text">
             <p>{{ card.compliment }}</p>
           </div>
@@ -184,6 +185,7 @@ export default {
   margin-bottom: 50px;
   transition: width 0.6s, transform 0.6s, opacity 0.5s;
   display: none;
+  margin-bottom: 60px;
   &__inner {
     position: relative;
     width: 100%;
@@ -199,18 +201,39 @@ export default {
     width: 100%;
     backface-visibility: hidden;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 25px;
   }
 
   &__front {
-    background-color: #f6f6f6;
-    color: #333;
+    background-color: rgb(136 136 136 / 52%);
+    color: #efefef;
+    border: 1px solid #b6b6b6;
+    font-weight: bold;
+    overflow: hidden;
+    backface-visibility: hidden;
+    font-size: 20px;
+    &::after {
+      content: "";
+      background-image: url(../assets/icons/trava_3.png);
+      background-position: center;
+      background-size: contain;
+      background-repeat: repeat;
+      height: 60px;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      border: 0;
+      opacity: 0.7;
+    }
   }
 
   &__back {
     background-color: #fff;
     transform: rotateY(180deg);
     overflow: hidden;
+    z-index: 2;
     &--text {
       font-size: 20px;
       font-weight: 900;
@@ -227,13 +250,28 @@ export default {
       }
     }
   }
+  &__text {
+    position: relative;
+    z-index: 1;
+  }
   &__trava {
     width: 100%;
     position: absolute;
-    top: -16px;
+    bottom: 0;
     left: 0;
     right: 0;
     margin: 0 auto;
+    opacity: 0.9;
+  }
+  &__trava2 {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -40px;
+    z-index: -2;
+    opacity: 0.7;
+    filter: blur(3px);
   }
 
   &.is-flipped .card__inner {
