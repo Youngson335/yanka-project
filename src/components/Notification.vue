@@ -8,7 +8,7 @@
         <h4><strong>Влад</strong></h4>
       </div>
       <div class="message__text">
-        <p>Пожелание получено, возвращайся завтра🤭</p>
+        <p>{{ getNotificationMessage }}</p>
       </div>
     </div>
     <div class="notification__time">
@@ -38,7 +38,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getActiveDate"]),
+    ...mapGetters(["getActiveDate", "getNotificationMessage"]),
   },
   methods: {
     async loadSound() {

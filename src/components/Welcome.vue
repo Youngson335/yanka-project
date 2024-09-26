@@ -37,6 +37,7 @@ export default {
         return "Добрый вечер";
       } else {
         this.stopGame = true;
+        this.$emit("sleepApp");
         return "Спокойной ночи";
       }
     },

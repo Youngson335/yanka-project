@@ -55,7 +55,7 @@ export default {
         }, 1000);
         this.$emit("editStateShowCard", true);
       }
-      localStorage.setItem(`getCompliments${this.getActiveDate}`, true); //заменить
+      localStorage.setItem(`getCompliments${this.getActiveDate}`, true);
     },
     showInvitationBlock() {
       if (this.$refs.invitationBlock) {

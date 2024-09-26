@@ -2,11 +2,17 @@
   <main class="home container">
     <StartApp @startApp="startApp" />
     <div class="upload__game" v-if="showApp === true">
-      <Welcome />
-      <EntryText />
-      <DateBtn @editStateShowCard="editStateShowCard" />
-      <Card :showCard="showCard" v-if="showCard === true" @showNot="showNot" />
-      <Notification v-if="showNotification" />
+      <Welcome @sleepApp="sleepApp" />
+      <div v-if="appSleep === false">
+        <EntryText />
+        <DateBtn @editStateShowCard="editStateShowCard" />
+        <Card
+          :showCard="showCard"
+          v-if="showCard === true"
+          @showNot="showNot"
+        />
+        <Notification v-if="showNotification" />
+      </div>
     </div>
   </main>
 </template>
@@ -19,6 +25,7 @@ import Card from "@/components/Card.vue";
 import { mapGetters } from "vuex";
 import Notification from "@/components/Notification.vue";
 import StartApp from "@/components/StartApp.vue";
+
 export default {
   components: {
     Welcome,
@@ -34,12 +41,16 @@ export default {
       showCard: false,
       showNotification: false,
       showApp: false,
+      appSleep: false,
     };
   },
   computed: {
     ...mapGetters(["getActiveDate"]),
   },
   methods: {
+    sleepApp() {
+      this.appSleep = true;
+    },
     startApp() {
       this.showApp = true;
     },
@@ -51,6 +62,11 @@ export default {
     },
   },
   mounted() {
+    localStorage.setItem(
+      `activeDate${this.getActiveDate}`,
+      `activeDate${this.getActiveDate}`
+    );
+    this.$store.dispatch("compliments/updateCompliments");
     if (
       localStorage.getItem(`getCompliments${this.getActiveDate}`) === "true"
     ) {
@@ -65,6 +81,7 @@ export default {
     }
     localStorage.removeItem(`openCard${this.getActiveDate - 1}`);
     localStorage.removeItem(`selectedCardId${this.getActiveDate - 1}`);
+    localStorage.removeItem(`activeDate${this.getActiveDate - 1}`);
 
     // localStorage.clear();
   },
