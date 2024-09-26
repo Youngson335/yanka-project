@@ -21,7 +21,9 @@
         <div class="card__back">
           <img class="card__trava2" src="../assets/icons/trava_2.png" alt="" />
           <div class="card__back--text">
-            <p>{{ card.compliment }}</p>
+            <p>
+              <strong>{{ card.compliment }}</strong>
+            </p>
           </div>
           <div class="card__back--image">
             <img :src="card.img" alt="" />
@@ -257,7 +259,7 @@ export default {
   &__trava {
     width: 100%;
     position: absolute;
-    bottom: 0;
+    bottom: -15px;
     left: 0;
     right: 0;
     margin: 0 auto;

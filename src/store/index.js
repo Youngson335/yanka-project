@@ -10,7 +10,7 @@ export default createStore({
     userData: "",
     yankaId: 1805077298,
     myId: 1491570929,
-    featuredId: [1805077298, 1491570929, 1427340491],
+    featuredId: [1805077298, 1491570929],
     accept: localStorage.getItem("modalState") || false,
     confirmAccept: JSON.parse(localStorage.getItem("modalState")) || false,
     confirmUser: false,
@@ -41,7 +41,7 @@ export default createStore({
     },
   },
   actions: {
-    initUserTg({ commit, dispatch }) {
+    initUserTg({ commit, dispatch, state }) {
       // деплой версия
       if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
         commit("setUserName", tg.initDataUnsafe.user.first_name);
@@ -86,6 +86,9 @@ export default createStore({
     },
     getActiveDate(state) {
       return state.activeDate;
+    },
+    getNotificationMessage(state) {
+      return state.compliments.notificationMessage;
     },
   },
   modules: {

@@ -1,58 +1,170 @@
-import { createStore } from "vuex";
 import img1 from "../assets/gifs/cat__two.gif";
-import img2 from "../assets/gifs/popugay.gif";
+import img2 from "../assets/gifs/cat__one.gif";
 import img3 from "../assets/gifs/cat5.gif";
 import img4 from "../assets/gifs/cat4.gif";
-import img5 from "../assets/gifs/cat__one.gif";
+import img5 from "../assets/gifs/cat3.gif";
+import img6 from "../assets/gifs/popugay.gif";
 
 const state = {
+  activeDate: new Date().getDate(),
   compliments: [
-    {
-      id: 1,
-      compliment: "Забей на хомяка, ты нормально зарабатываешь!",
-      show: 0,
-      img: img4,
-    },
-    {
-      id: 2,
-      compliment: "Ты слишком... не выразить словами",
-      show: 0,
-      img: img4,
-    },
-    {
-      id: 3,
-      compliment: "Делая - делай, не делая - не делай!",
-      show: 0,
-      img: img4,
-    },
+    { id: 1, compliment: "", show: 0, img: null },
+    { id: 2, compliment: "", show: 0, img: null },
+    { id: 3, compliment: "", show: 0, img: null },
   ],
+  notificationMessage: "",
 };
 
-const mutations = {};
+const mutations = {
+  setCompliments(state, arr) {
+    for (let i = 0; i < state.compliments.length; i++) {
+      state.compliments[i].compliment = arr[0];
+      state.compliments[i].img = arr[1];
+    }
+  },
+  setNotificationMessage(state, str) {
+    state.notificationMessage = str;
+  },
+};
 
 const actions = {
-  // async getCompliments({ commit }) {
-  //   try {
-  //     const response = await fetch("http://localhost:8080/compliments");
-  //     const data = await response.json();
-  //     console.log(data);
-  //     commit("setDataCompliments", data);
-  //     if (data.compliments.length === 0) {
-  //       console.log("Нет комплиментов в базе данных.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Ошибка при получении комплиментов:", error);
-  //   }
-  // },
+  updateCompliments({ commit, state }) {
+    const cardId = localStorage.getItem(`activeDate${state.activeDate}`);
+    console.log("cardID", cardId);
+    switch (cardId) {
+      case "activeDate26":
+        commit("setCompliments", ["Ты сегодня 'вау'!", img1]);
+        commit("setNotificationMessage", "И это правда!");
+        break;
+      case "activeDate27":
+        commit("setCompliments", ["Бог тебя любит!", img2]);
+        commit("setNotificationMessage", "И будет любить!");
+        break;
+      case "activeDate28":
+        commit("setCompliments", ["Шикарно выглядишь!", img3]);
+        commit("setNotificationMessage", "Не смущайся!)");
+        break;
+      case "activeDate29":
+        commit("setCompliments", ["Люби брата своего)", img4]);
+        commit("setNotificationMessage", "Даже если невозможно");
+        break;
+      case "activeDate30":
+        commit("setCompliments", ["Тебе идет улыбка!)", img5]);
+        commit(
+          "setNotificationMessage",
+          "Улыбка идет и пусть никогда не уходит!"
+        );
+        break;
+      case "activeDate31":
+        commit("setCompliments", ["Я рад, когда ты радуешься!", img6]);
+        commit("setNotificationMessage", "И наоборот");
+        break;
+      case "activeDate1":
+        commit("setCompliments", ["Твои переживания - мои переживания", img1]);
+        commit("setNotificationMessage", "Но лучше не переживай)");
+        break;
+      case "activeDate2":
+        commit("setCompliments", ["Мне нравится с тобой все обсуждать", img2]);
+        commit("setNotificationMessage", "Даже когда нечего обсуждать)");
+        break;
+      case "activeDate3":
+        commit("setCompliments", [
+          "Я готов слушать все новости твоей жизни!",
+          img3,
+        ]);
+        commit("setNotificationMessage", "Ведь этот канал мне нравится!)");
+        break;
+      case "activeDate4":
+        commit("setCompliments", [
+          "В любой трудный момент ты можешь позвонить!",
+          img4,
+        ]);
+        commit(
+          "setNotificationMessage",
+          "Если не отвечу, значит у меня тоже трудность("
+        );
+        break;
+      case "activeDate5":
+        commit("setCompliments", ["Молюсь за тебя!", img5]);
+        commit("setNotificationMessage", "Верю, что взаимно!)");
+        break;
+      case "activeDate6":
+        commit("setCompliments", [
+          "Твои кружочки в телеграм - самый пересматриваемый фильм!",
+          img6,
+        ]);
+        commit("setNotificationMessage", "С отличным сюжетом!");
+        break;
+      case "activeDate7":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate8":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate9":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate10":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate11":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate12":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate13":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate14":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate15":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate16":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate17":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate18":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate19":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate20":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate21":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate22":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate23":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate24":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate25":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      case "activeDate26":
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        break;
+      default:
+        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+    }
+  },
 };
 
-const getters = {};
-
-const store = createStore({
+// Просто экспортируем объект модуля
+export default {
+  namespaced: true, // Пространство имен включено
   state,
   mutations,
   actions,
-  getters,
-});
-
-export default store;
+};
