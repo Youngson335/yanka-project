@@ -37,8 +37,8 @@ const actions = {
         commit("setNotificationMessage", "И это правда!");
         break;
       case "activeDate27":
-        commit("setCompliments", ["Бог тебя любит!", img2]);
-        commit("setNotificationMessage", "И будет любить!");
+        commit("setCompliments", ["Ты большая молодец!", img2]);
+        commit("setNotificationMessage", "Не замерзни только пожалуйста!)");
         break;
       case "activeDate28":
         commit("setCompliments", ["Шикарно выглядишь!", img3]);
