@@ -12,7 +12,6 @@
           @showNot="showNot"
         />
         <Notification v-if="showNotification" />
-        <ShareToStory />
       </div>
     </div>
   </main>
@@ -26,7 +25,6 @@ import Card from "@/components/Card.vue";
 import { mapGetters } from "vuex";
 import Notification from "@/components/Notification.vue";
 import StartApp from "@/components/StartApp.vue";
-import ShareToStory from "@/ShareToStory.vue";
 
 export default {
   components: {
@@ -37,7 +35,6 @@ export default {
     Card,
     Notification,
     StartApp,
-    ShareToStory,
   },
   data() {
     return {
