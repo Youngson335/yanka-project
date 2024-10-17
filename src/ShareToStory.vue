@@ -1,9 +1,3 @@
-<template>
-  <div></div>
-</template>
-<script>
-export default {};
-</script>
 <style lang=""></style>
 <template>
   <div class="flex flex-col items-center">
