@@ -15,6 +15,7 @@
 import HomePage from "./pages/HomePage.vue";
 import Description from "./components/Modals/Description.vue";
 import { mapGetters } from "vuex";
+
 export default {
   components: {
     HomePage,
