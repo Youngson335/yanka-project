@@ -85,7 +85,7 @@ export default {
       text-align: start;
     }
     span {
-      color: rgb(214, 147, 157);
+      color: rgb(129 145 80);
       font-weight: 900;
       text-decoration: underline;
     }

@@ -1,16 +1,33 @@
 <template>
-  <div ref="invitationBlock" class="invitation" v-if="showBtn === true">
-    <div class="invitation__picture">
-      <img
+  <div ref="invitationBlock" class="invitation__block" v-if="showBtn === true">
+    <div class="invitation">
+      <div class="invitation__picture">
+        <!-- <img
         class="invitation__picture--img"
         src="../../assets/gifs/cursor-cat.gif"
         alt=""
-      />
+      />       -->
+        <!-- <img
+        class="invitation__picture--img"
+        src="../../assets/cats-video/5.webm"
+        alt=""
+      /> -->
+        <video
+          class="invitation__picture--video"
+          src="../../assets/cats-video/4.webm"
+          autoplay
+          muted
+          loop
+        ></video>
+      </div>
+      <div class="invitation__button">
+        <button class="invitation__button--btn" @click="handleClick">
+          Получить пожелание на {{ date }}
+        </button>
+      </div>
     </div>
-    <div class="invitation__button">
-      <button class="invitation__button--btn" @click="handleClick">
-        Получить пожелание на {{ date }}
-      </button>
+    <div ref="invitationCat" class="invitation__cat">
+      <video src="../../assets/cat-select.webm" autoplay loop muted alt="" />
     </div>
   </div>
 </template>
@@ -90,12 +107,12 @@ export default {
 
 <style lang="scss">
 .invitation {
-  display: none;
   background-color: white;
-  padding: 10px;
+  // padding: 10px;
   max-width: 350px;
   margin: 0 auto;
   animation: showInvitation 1s ease;
+  position: relative;
   @keyframes showInvitation {
     0% {
       filter: blur(10px);
@@ -107,6 +124,15 @@ export default {
     100% {
       filter: blur(0px);
       scale: 1;
+    }
+  }
+  &__block {
+    display: none;
+  }
+  &__cat {
+    animation: showInvitation 1s ease;
+    & video {
+      width: 150px;
     }
   }
   &__hidden {
@@ -133,10 +159,13 @@ export default {
       font-family: "Comfortaa", sans-serif;
       padding: 10px;
       border: none;
-      background-color: rgb(214, 147, 157);
+      background-color: rgb(129 145 80);
       color: white;
       width: 300px;
       transition: all 0.2s ease;
+      margin: 10px;
+      text-align: start;
+      text-wrap: pretty;
       &:active {
         transform: scale(0.95);
       }
@@ -144,14 +173,20 @@ export default {
   }
 }
 .invitation__picture {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-bottom: 5px;
+  // width: 100%;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // flex-direction: column;
+  // margin-bottom: 5px;
   &--img {
     width: 300px;
+  }
+  &--video {
+    position: absolute;
+    top: -12px;
+    right: 0;
+    width: 80px;
   }
 }
 </style>

@@ -6,7 +6,7 @@
   </transition>
   <HomePage v-if="!showDescription" />
   <div class="movie__back">
-    <img src="./assets/background/back5.jpeg" alt="" />
+    <img src="./assets/background/back2.jpeg" alt="" />
   </div>
   <router-view />
 </template>

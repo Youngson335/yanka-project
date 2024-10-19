@@ -17,20 +17,23 @@
       <div class="card__inner">
         <div class="card__front">
           <p class="card__text">Выбрать</p>
+          <img src="../assets/stikers/stiker-3.webp" alt="" />
         </div>
         <div class="card__back">
-          <img class="card__trava2" src="../assets/icons/trava_2.png" alt="" />
           <div class="card__back--text">
             <p>
               <strong>{{ card.compliment }}</strong>
             </p>
           </div>
           <div class="card__back--image">
-            <img :src="card.img" alt="" />
+            <!-- <img :src="card.img" alt="" /> -->
+            <video :src="card.img" autoplay muted loop></video>
           </div>
-          <img class="card__trava" src="../assets/gifs/trava.gif" alt="" />
         </div>
       </div>
+    </div>
+    <div class="card__cat" v-if="showCat">
+      <video src="../assets/cat-compliment.webm"></video>
     </div>
   </div>
 </template>
@@ -44,7 +47,7 @@ export default {
     return {
       flippedCards: [],
       selectedCardId: null,
-      showCard: false,
+      showCat: false,
       canFlip: true, // новое свойство для контроля возможности выбора карточки
       dateStorage: new Date().getDate(),
       openCard: null,
@@ -75,6 +78,7 @@ export default {
         source.start(0);
       }
       this.$emit("showNot", true);
+      this.showCat = true;
 
       localStorage.setItem(`openCard${this.getActiveDate}`, true);
 
@@ -140,6 +144,9 @@ export default {
           this.openCard = "true"; // устанавливаем состояние открытой карточки
           this.checkActiveCard(); // проверяем активную карточку при монтировании
           this.canFlip = false; // отключаем возможность выбора
+          setTimeout(() => {
+            this.showCat = true; // показываем котенка
+          }, 1500);
         } else {
           this.openCard = null; // сбрасываем состояние открытой карточки
           this.canFlip = true; // разрешаем выбор карточек
@@ -188,6 +195,13 @@ export default {
   transition: width 0.6s, transform 0.6s, opacity 0.5s;
   display: none;
   margin-bottom: 60px;
+  &__cat {
+    margin-top: 50px;
+    animation: showCard 0.7s ease;
+    & video {
+      width: 100px;
+    }
+  }
   &__inner {
     position: relative;
     width: 100%;
@@ -195,6 +209,8 @@ export default {
     text-align: center;
     transform-style: preserve-3d;
     transition: transform 0.6s;
+    display: flex;
+    justify-content: center;
   }
 
   &__front,
@@ -204,51 +220,54 @@ export default {
     backface-visibility: hidden;
     padding: 10px;
     border-radius: 25px;
+    max-width: 300px;
+    margin: 0 auto;
   }
 
   &__front {
-    background-color: rgb(136 136 136 / 52%);
+    background-color: rgb(63 63 63 / 52%);
     color: #efefef;
     border: 1px solid #b6b6b6;
     font-weight: bold;
     overflow: hidden;
     backface-visibility: hidden;
     font-size: 20px;
-    &::after {
-      content: "";
-      background-image: url(../assets/icons/trava_3.png);
-      background-position: center;
-      background-size: contain;
-      background-repeat: repeat;
-      height: 60px;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      border: 0;
-      opacity: 0.7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & img {
+      width: 30px;
     }
   }
 
   &__back {
-    background-color: #fff;
+    background-color: #4b4b4b52;
     transform: rotateY(180deg);
     overflow: hidden;
     z-index: 2;
+    color: #ede8e8;
+    max-width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     &--text {
       font-size: 20px;
       font-weight: 900;
       text-align: start;
-      margin-top: 10px;
-      margin-left: 10px;
+      // margin-top: 10px;
+      // margin-left: 10px;
+      margin-right: 10px;
     }
     &--image {
       display: flex;
       justify-content: end;
       align-items: center;
-      & img {
-        width: 70px;
+      // & img {
+      //   width: 70px;
+      // }
+      & video {
+        width: 60px;
+        border-radius: 20px;
       }
     }
   }

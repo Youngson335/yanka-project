@@ -1,17 +1,23 @@
 <template>
   <div ref="start" class="start" v-if="showBtn === true">
+    <UpdateDescription class="start__info" />
     <div class="start__btn" @click="startGames">
       <div class="start__btn--block">
         <button>
           {{ startText }}
         </button>
-        <img src="../assets/icons/time.png" alt="" />
+        <img src="../assets/cats-stiker/4.png" alt="" />
       </div>
     </div>
   </div>
 </template>
+
 <script>
+import UpdateDescription from "./Modals/UpdateDescription.vue";
 export default {
+  components: {
+    UpdateDescription,
+  },
   data() {
     return {
       startText: "Начать",
@@ -42,7 +48,7 @@ export default {
 </script>
 <style lang="scss">
 .start {
-  height: 100vh;
+  // height: 100vh;
   backdrop-filter: blur(5px);
   animation: showStartAppBtn 0.5s ease;
   margin: -20px;
@@ -55,6 +61,9 @@ export default {
       opacity: 1;
       transform: translateY(0px);
     }
+  }
+  &__info {
+    margin-top: 30px;
   }
   &__animate {
     animation: hiddenStartAppBtn 0.5s ease;
@@ -74,6 +83,7 @@ export default {
     justify-content: center;
     align-items: center;
     height: 90%;
+    margin-top: 50px;
     &--block {
       display: flex;
       justify-content: space-between;
@@ -83,14 +93,16 @@ export default {
       background: #e5e5e517;
       border-radius: 25px;
       max-width: 250px;
-      background-image: url(../assets/icons/trava_1.png);
-      background-position: bottom;
-      background-size: contain;
-      background-repeat: repeat;
       border: 1px solid #c2c2c2;
+      position: relative;
+      overflow: hidden;
+      height: 60px;
     }
     & img {
-      width: 40px;
+      width: 50px;
+      position: absolute;
+      right: 0;
+      bottom: 0;
     }
 
     & button {
