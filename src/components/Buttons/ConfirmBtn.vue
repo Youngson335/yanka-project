@@ -51,13 +51,13 @@ export default {
     padding: 5px 10px;
     font-size: 16px;
     border-radius: 7px;
-    background: rgb(214 147 157);
+    background: rgb(129 145 80);
     font-family: "Comfortaa", sans-serif;
     color: white;
     transition: all 0.4s ease;
     &:disabled {
-      background: rgb(214 147 157 / 80%);
-      color: rgb(192 119 129 / 27%);
+      background: rgb(129 145 80);
+      color: rgb(83, 94, 49);
     }
   }
 }

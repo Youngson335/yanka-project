@@ -1,5 +1,5 @@
 <template>
-  <main class="home container">
+  <main class="home container" v-if="true">
     <StartApp @startApp="startApp" />
     <div class="upload__game" v-if="showApp === true">
       <Welcome @sleepApp="sleepApp" />
@@ -15,6 +15,7 @@
       </div>
     </div>
   </main>
+  <RunGIF />
 </template>
 <script>
 import Welcome from "@/components/Welcome.vue";
@@ -25,6 +26,7 @@ import Card from "@/components/Card.vue";
 import { mapGetters } from "vuex";
 import Notification from "@/components/Notification.vue";
 import StartApp from "@/components/StartApp.vue";
+import RunGIF from "@/components/RunGIF.vue";
 
 export default {
   components: {
@@ -35,6 +37,7 @@ export default {
     Card,
     Notification,
     StartApp,
+    RunGIF,
   },
   data() {
     return {
@@ -42,6 +45,7 @@ export default {
       showNotification: false,
       showApp: false,
       appSleep: false,
+      showUpdateDescription: localStorage.getItem("update"),
     };
   },
   computed: {
@@ -59,6 +63,9 @@ export default {
     },
     editStateShowCard(val) {
       this.showCard = val;
+    },
+    infoUpdate() {
+      localStorage.setItem("update", true);
     },
   },
   mounted() {

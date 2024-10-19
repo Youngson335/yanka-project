@@ -1,9 +1,19 @@
-import img1 from "../assets/gifs/cat__two.gif";
-import img2 from "../assets/gifs/cat__one.gif";
-import img3 from "../assets/gifs/cat5.gif";
-import img4 from "../assets/gifs/cat4.gif";
-import img5 from "../assets/gifs/cat3.gif";
-import img6 from "../assets/gifs/popugay.gif";
+import img1 from "../assets/cats-video/1.webm";
+import img2 from "../assets/cats-video/2.webm";
+import img3 from "../assets/cats-video/3.webm";
+import img5 from "../assets/cats-video/5.webm";
+import img6 from "../assets/cats-video/6.webm";
+import img7 from "../assets/cats-video/7.webm";
+import img8 from "../assets/cats-video/8.webm";
+import img9 from "../assets/cats-video/9.webm";
+import img10 from "../assets/cats-video/10.webm";
+import img11 from "../assets/cats-video/11.webm";
+import img12 from "../assets/cats-video/12.webm";
+import img13 from "../assets/cats-video/13.webm";
+import img14 from "../assets/cats-video/14.webm";
+import img15 from "../assets/cats-video/15.webm";
+import img16 from "../assets/cats-video/16.webm";
+import img17 from "../assets/cats-video/17.webm";
 
 const state = {
   activeDate: new Date().getDate(),
@@ -110,30 +120,30 @@ const actions = {
         commit("setNotificationMessage", "Жду 😁");
         break;
       case "activeDate19":
-        commit("setCompliments", ["Твои утренние котики - красота)", img3]);
+        commit("setCompliments", ["Твои утренние котики - красота)", img2]);
         commit("setNotificationMessage", "Мы скоро сами станем котиками 😅");
         break;
       case "activeDate20":
-        commit("setCompliments", ["Твои утренние котики - красота)", img4]);
-        commit("setNotificationMessage", "Мы скоро сами станем котиками 😅");
+        commit("setCompliments", ["Я рад, когда ты радуешься!", img8]);
+        commit("setNotificationMessage", "И наоборот");
         break;
       case "activeDate21":
-        commit("setCompliments", ["Я рад, когда ты радуешься!", img5]);
+        commit("setCompliments", ["Я рад, когда ты радуешься!", img9]);
         commit("setNotificationMessage", "И наоборот");
         break;
       case "activeDate22":
-        commit("setCompliments", ["У тебя прекрасные родители)", img6]);
+        commit("setCompliments", ["У тебя прекрасные родители)", img10]);
         commit("setNotificationMessage", "Кружочки твоей мамы - 🥰");
         break;
       case "activeDate23":
         commit("setCompliments", [
           "Не стесняйся, когда говорят тебе комплименты)",
-          img1,
+          img11,
         ]);
         commit("setNotificationMessage", "Ведь ты их заслуживаешь))");
         break;
       case "activeDate24":
-        commit("setCompliments", ["Я готов поддержать в любой момент!", img6]);
+        commit("setCompliments", ["Я готов поддержать в любой момент!", img12]);
         commit("setNotificationMessage", "Просто напиши/позвони");
         break;
       case "activeDate25":
