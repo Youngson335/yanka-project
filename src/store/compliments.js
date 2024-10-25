@@ -43,22 +43,31 @@ const actions = {
     console.log("cardID", cardId);
     switch (cardId) {
       case "activeDate26":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        commit("setCompliments", ["Ты красивая)", img2]);
+        commit("setNotificationMessage", "Жду кружочек!)");
         break;
       case "activeDate27":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        commit("setCompliments", ["Воскресный созвон?", img3]);
+        commit("setNotificationMessage", "Было бы не плохо))");
         break;
       case "activeDate28":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        commit("setCompliments", ["Ты очень мудрая!", img4]);
+        commit("setNotificationMessage", "На пол года меня старше все таки)");
         break;
       case "activeDate29":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        commit("setCompliments", ["Ты очень смешная))", img5]);
+        commit("setNotificationMessage", "Мне с тобой очень весело!)");
         break;
       case "activeDate30":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        commit("setCompliments", ["Надеюсь скоро увидимся)", img6]);
+        commit("setNotificationMessage", "Не много даже волнуюсь))");
         break;
       case "activeDate31":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        commit("setCompliments", ["Ты ооочень милая)", img7]);
+        commit(
+          "setNotificationMessage",
+          "Я не могу это в словах даже передать!)"
+        );
         break;
       case "activeDate1":
         commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
@@ -152,9 +161,6 @@ const actions = {
           "setNotificationMessage",
           "А то с тобой за компанию буду болеть))"
         );
-        break;
-      case "activeDate26":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
         break;
       default:
         commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
