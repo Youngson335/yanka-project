@@ -85,28 +85,48 @@ const actions = {
         commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
         break;
       case "activeDate6":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        commit("setCompliments", ["Мы немного ближе)", img1]);
+        commit("setNotificationMessage", "По особому ощущается)");
         break;
       case "activeDate7":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        commit("setCompliments", ["Вы меня вдохновляете!", img2]);
+        commit("setNotificationMessage", "Вы - моя мотивация работать!");
         break;
       case "activeDate8":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        commit("setCompliments", ["Я хочу от вас сегодня кружочки)", img3]);
+        commit("setNotificationMessage", "Сам тоже буду отправлять)");
         break;
       case "activeDate9":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        commit("setCompliments", ["Я готов вас просто слушать)", img4]);
+        commit(
+          "setNotificationMessage",
+          "Даже если для меня это не актуальная тема!)"
+        );
         break;
       case "activeDate10":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        commit("setCompliments", [
+          "Как будто бы хочется вас увидеть на звонке",
+          img5,
+        ]);
+        commit(
+          "setNotificationMessage",
+          "Как вы думаете, хорошая идея, или рано?"
+        );
         break;
       case "activeDate11":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        commit("setCompliments", ["Хорошей вам работы)", img6]);
+        commit(
+          "setNotificationMessage",
+          "Надеюсь, что вы не устанете сегодня)"
+        );
         break;
       case "activeDate12":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        commit("setCompliments", ["Вы просто ооооооооочень красивая)", img7]);
+        commit("setNotificationMessage", "Я не перестану это говорить!");
         break;
       case "activeDate13":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        commit("setCompliments", ["Хотите правду?", img7]);
+        commit("setNotificationMessage", "Вы мне нравитесь!)");
         break;
       case "activeDate14":
         commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
