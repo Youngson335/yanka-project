@@ -1,5 +1,5 @@
 <template>
-  <div ref="start" class="start" v-if="showBtn === true">
+  <!-- <div ref="start" class="start" v-if="showBtn === true">
     <UpdateDescription class="start__info" />
     <div class="start__btn" @click="startGames">
       <div class="start__btn--block">
@@ -9,6 +9,20 @@
         <img src="../assets/cats-stiker/4.png" alt="" />
       </div>
     </div>
+  </div> -->
+  <div ref="start" class="start" v-if="isTest === false">
+    <UpdateDescription class="start__info" />
+    <div class="start__btn" @click="startGames">
+      <div class="start__btn--block">
+        <button>
+          {{ startText }}
+        </button>
+        <img src="../assets/cats-stiker/4.png" alt="" />
+      </div>
+    </div>
+  </div>
+  <div v-else>
+    <h1>Приложение временно не доступно) Разработчик работает уже над этим!</h1>
   </div>
 </template>
 
@@ -22,6 +36,7 @@ export default {
     return {
       startText: "Начать",
       showBtn: true,
+      isTest: true,
     };
   },
   methods: {
@@ -49,7 +64,6 @@ export default {
 <style lang="scss">
 .start {
   // height: 100vh;
-  backdrop-filter: blur(5px);
   animation: showStartAppBtn 0.5s ease;
   margin: -20px;
   @keyframes showStartAppBtn {
