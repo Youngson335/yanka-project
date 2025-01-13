@@ -17,7 +17,7 @@
       <div class="card__inner">
         <div class="card__front">
           <p class="card__text">Выбрать</p>
-          <img src="../assets/stikers/stiker-3.webp" alt="" />
+          <img :src="card.srcImage" alt="" />
         </div>
         <div class="card__back">
           <div class="card__back--text">
@@ -32,15 +32,17 @@
         </div>
       </div>
     </div>
-    <div class="card__cat" v-if="showCat">
+    <!-- <div class="card__cat" v-if="showCat">
       <video src="../assets/cat-compliment.webm"></video>
-    </div>
+    </div> -->
+    <Grade class="grade__component" :showReaction="showReaction" />
   </div>
 </template>
 
 <script>
 import { nextTick } from "vue";
 import { mapGetters } from "vuex";
+import Grade from "./Grade.vue";
 
 export default {
   data() {
@@ -52,6 +54,14 @@ export default {
       dateStorage: new Date().getDate(),
       openCard: null,
     };
+  },
+  components: {
+    Grade,
+  },
+  props: {
+    showReaction: {
+      type: Boolean,
+    },
   },
   computed: {
     ...mapGetters(["getCompliments", "getActiveDate"]),
@@ -133,7 +143,6 @@ export default {
   mounted() {
     localStorage.removeItem(`openCard${this.getActiveDate - 1}`);
     localStorage.removeItem(`selectedCardId${this.getActiveDate - 1}`);
-    console.log("вывел");
     setTimeout(() => {
       nextTick(() => {
         // Проверяем, открыта ли карточка на сегодня
@@ -195,6 +204,9 @@ export default {
   transition: width 0.6s, transform 0.6s, opacity 0.5s;
   display: none;
   margin-bottom: 60px;
+  &__block {
+    position: relative;
+  }
   &__cat {
     margin-top: 50px;
     animation: showCard 0.7s ease;
@@ -330,11 +342,10 @@ export default {
     transform: translateY(0px);
   }
 }
-.card__block {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
+.grade__component {
+  position: absolute;
+  background: white;
+  padding: 5px;
+  border-radius: 20px;
 }
 </style>

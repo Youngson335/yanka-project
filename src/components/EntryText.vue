@@ -68,7 +68,7 @@ export default {
     position: relative;
     z-index: 2;
     display: none;
-    color: rgb(129 145 80);
+    color: rgb(138 89 156);
     box-shadow: 10px 1px 30px 0px #0000006b;
   }
   & p {
@@ -118,7 +118,7 @@ export default {
     }
   }
   & p {
-    background: rgb(129 145 80);
+    background: rgb(138 89 156);
     color: #f6f2f2;
     border-radius: 10px;
     padding: 7px;

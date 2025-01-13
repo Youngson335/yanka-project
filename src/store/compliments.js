@@ -15,12 +15,16 @@ import img15 from "../assets/cats-video/15.webm";
 import img16 from "../assets/cats-video/16.webm";
 import img17 from "../assets/cats-video/17.webm";
 
+import srcImagePoint1 from "../assets/new_version_material/serdze-points/serdze-point1.webp";
+import srcImagePoint2 from "../assets/new_version_material/serdze-points/serdze-point2.webp";
+import srcImagePoint3 from "../assets/new_version_material/serdze-points/serdze-point3.webp";
+
 const state = {
   activeDate: new Date().getDate(),
   compliments: [
-    { id: 1, compliment: "", show: 0, img: null },
-    { id: 2, compliment: "", show: 0, img: null },
-    { id: 3, compliment: "", show: 0, img: null },
+    { id: 1, compliment: "", show: 0, img: null, srcImage: srcImagePoint1 },
+    { id: 2, compliment: "", show: 0, img: null, srcImage: srcImagePoint2 },
+    { id: 3, compliment: "", show: 0, img: null, srcImage: srcImagePoint3 },
   ],
   notificationMessage: "",
 };

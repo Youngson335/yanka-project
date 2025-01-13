@@ -1,5 +1,9 @@
 <template>
-  <div ref="notification" class="notification" v-if="notification === true">
+  <div
+    ref="notification"
+    class="notification"
+    v-if="notification === true && enabledId === true"
+  >
     <div class="notification__avatar">
       <img src="../assets/avatar.png" alt="" />
     </div>
@@ -40,6 +44,11 @@ export default {
   computed: {
     ...mapGetters(["getActiveDate", "getNotificationMessage"]),
   },
+  props: {
+    enabledId: {
+      type: Boolean,
+    },
+  },
   methods: {
     async loadSound() {
       const response = await fetch(require("@/assets/audio/message.mp3"));
@@ -60,14 +69,17 @@ export default {
         this.$refs.chat.style.display = "none";
       }, 1000);
       this.hiddenNotification();
+
+      this.$emit("showFaceId", true);
     },
     hiddenNotification() {
       setTimeout(() => {
         this.$refs.notification.classList.add("hidden__notification");
-      }, 7000);
+        this.$emit("showGrade", true);
+      }, 10000);
       setTimeout(() => {
         this.$refs.notification.style.display = "none";
-      }, 7600);
+      }, 10600);
     },
     animateChat() {
       setTimeout(() => {

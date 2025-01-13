@@ -10,12 +10,22 @@
           :showCard="showCard"
           v-if="showCard === true"
           @showNot="showNot"
+          :showReaction="showReaction"
         />
-        <Notification v-if="showNotification" />
+        <Notification
+          v-if="showNotification"
+          @showFaceId="showFaceId = $event"
+          @showGrade="showReaction = $event"
+          :enabledId="showFaceId === true ? checkFaceId : false"
+        />
       </div>
     </div>
+
+    <div class="face-id__block" v-if="showFaceId">
+      <FaceId @checkFaceId="checkFaceId = $event" />
+    </div>
   </main>
-  <RunGIF />
+  <!-- <RunGIF /> -->
 </template>
 <script>
 import Welcome from "@/components/Welcome.vue";
@@ -26,7 +36,8 @@ import Card from "@/components/Card.vue";
 import { mapGetters } from "vuex";
 import Notification from "@/components/Notification.vue";
 import StartApp from "@/components/StartApp.vue";
-import RunGIF from "@/components/RunGIF.vue";
+import FaceId from "@/components/FaceId.vue";
+// import RunGIF from "@/components/RunGIF.vue";
 
 export default {
   components: {
@@ -37,7 +48,8 @@ export default {
     Card,
     Notification,
     StartApp,
-    RunGIF,
+    FaceId,
+    // RunGIF,
   },
   data() {
     return {
@@ -46,6 +58,9 @@ export default {
       showApp: false,
       appSleep: false,
       showUpdateDescription: localStorage.getItem("update"),
+      showFaceId: false,
+      checkFaceId: false,
+      showReaction: false,
     };
   },
   computed: {

@@ -12,22 +12,19 @@
         src="../../assets/cats-video/5.webm"
         alt=""
       /> -->
-        <video
+        <img
           class="invitation__picture--video"
-          src="../../assets/cats-video/4.webm"
+          src="../../assets/new_version_material/characters/flower-life2.webp"
           autoplay
           muted
           loop
-        ></video>
+        />
       </div>
       <div class="invitation__button">
         <button class="invitation__button--btn" @click="handleClick">
           Получить пожелание на {{ date }}
         </button>
       </div>
-    </div>
-    <div ref="invitationCat" class="invitation__cat">
-      <video src="../../assets/cat-select.webm" autoplay loop muted alt="" />
     </div>
   </div>
 </template>
@@ -113,6 +110,7 @@ export default {
   margin: 0 auto;
   animation: showInvitation 1s ease;
   position: relative;
+  border-radius: 20px;
   @keyframes showInvitation {
     0% {
       filter: blur(10px);
@@ -159,13 +157,14 @@ export default {
       font-family: "Comfortaa", sans-serif;
       padding: 10px;
       border: none;
-      background-color: rgb(129 145 80);
+      background-color: rgb(138 89 156);
       color: white;
       width: 300px;
       transition: all 0.2s ease;
       margin: 10px;
       text-align: start;
       text-wrap: pretty;
+      border-radius: 10px;
       &:active {
         transform: scale(0.95);
       }

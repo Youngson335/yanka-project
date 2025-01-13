@@ -3,11 +3,15 @@
     <div class="update__block">
       <div class="update__title">
         <h1 class="update__title--h1">Новое обновление!</h1>
-        <img src="../../assets/stikers/stiker-1.webp" alt="" />
+        <!-- <img src="../../assets/stikers/stiker-1.webp" alt="" /> -->
+        <img src="../../assets/new_version_material/items/wow.webp" alt="" />
       </div>
       <div class="update__text">
         <h2>Теперь еще больше котиков!</h2>
-        <img src="../../assets/cats-stiker/1.png" alt="" />
+        <img
+          src="../../assets/new_version_material/characters/coffe.webp"
+          alt=""
+        />
       </div>
     </div>
     <div class="update__info">
