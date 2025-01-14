@@ -11,6 +11,7 @@
           v-if="showCard === true"
           @showNot="showNot"
           :showReaction="showReaction"
+          @checkLocalReaction="showReaction = $event"
         />
         <Notification
           v-if="showNotification"
@@ -66,6 +67,13 @@ export default {
   computed: {
     ...mapGetters(["getActiveDate"]),
   },
+  watch: {
+    showApp(newVal) {
+      if (newVal === true) {
+        this.$emit("hiddenMenu", true);
+      }
+    },
+  },
   methods: {
     sleepApp() {
       this.appSleep = true;
@@ -84,6 +92,12 @@ export default {
     },
   },
   mounted() {
+    if (this.showApp === false) {
+      this.$emit("hiddenMenu", false);
+    } else {
+      this.$emit("hiddenMenu", true);
+    }
+
     localStorage.setItem(
       `activeDate${this.getActiveDate}`,
       `activeDate${this.getActiveDate}`

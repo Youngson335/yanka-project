@@ -1,8 +1,8 @@
 <template>
-  <div class="grade" v-if="showReaction">
+  <div class="grade" v-if="showReaction" ref="refGradeBlock">
     <div
       class="grade__title"
-      v-if="!showReactions"
+      v-if="!showReactions && activeReaction === null"
       @click="showReactions = true"
     >
       <p>оценить</p>
@@ -17,7 +17,10 @@
         <img :src="reaction.img" alt="" />
       </div>
     </div>
-    <div class="selected__reaction" v-if="selectReaction">
+    <div
+      class="selected__reaction"
+      v-if="selectReaction || activeReaction !== null"
+    >
       <img :src="activeReaction.img" alt="" />
     </div>
   </div>
@@ -28,15 +31,16 @@ import reaction2 from "../assets/new_version_material/reaction/reaction-2.webp";
 import reaction3 from "../assets/new_version_material/reaction/reaction-3.webp";
 import reaction4 from "../assets/new_version_material/reaction/reaction-4.webp";
 import reaction5 from "../assets/new_version_material/reaction/reaction-5.webp";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       reactions: [
-        { id: 1, img: reaction1 },
-        { id: 2, img: reaction2 },
-        { id: 3, img: reaction3 },
-        { id: 4, img: reaction4 },
-        { id: 5, img: reaction5 },
+        { id: 1, img: reaction1, title: "reaction1" },
+        { id: 2, img: reaction2, title: "reaction2" },
+        { id: 3, img: reaction3, title: "reaction3" },
+        { id: 4, img: reaction4, title: "reaction4" },
+        { id: 5, img: reaction5, title: "reaction5" },
       ],
       showReactions: false,
       activeReaction: null,
@@ -48,20 +52,58 @@ export default {
       type: Boolean,
     },
   },
+  computed: {
+    ...mapGetters(["getActiveDate"]),
+    checkActiveDate() {
+      return this.getActiveDate;
+    },
+  },
   methods: {
     setNewReaction(reaction) {
       this.activeReaction = reaction;
+      localStorage.setItem(
+        `active-reaction${this.getActiveDate}`,
+        JSON.stringify(this.activeReaction)
+      );
       this.selectReaction = true;
     },
+  },
+  mounted() {
+    let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+    let yesterdayDate = yesterday.getDate();
+
+    const yesterdayLocalReaction = localStorage.getItem(
+      `active-reaction${yesterdayDate}`
+    );
+
+    if (yesterdayLocalReaction !== null) {
+      localStorage.removeItem(`active-reaction${yesterdayDate}`);
+    }
+
+    const localReaction = localStorage.getItem(
+      `active-reaction${this.getActiveDate}`
+    );
+    if (localReaction !== null) {
+      const reaction = JSON.parse(localReaction);
+      let result;
+      this.reactions.forEach(function (item) {
+        if (item.title === reaction.title) {
+          result = item;
+        }
+      });
+
+      this.activeReaction = result;
+      this.$emit("checkLocalReaction", true);
+    }
   },
 };
 </script>
 <style lang="scss">
 .grade {
-  animation: showTitleReaction 0.5s ease;
   overflow: hidden;
   &__title {
     color: black;
+    animation: showTitleReaction 0.5s ease;
   }
   &__items {
     display: flex;
@@ -86,13 +128,15 @@ export default {
   }
   @keyframes showTitleReaction {
     0% {
+      opacity: 0;
       height: 0px;
     }
     70% {
-      height: 30px;
+      height: 20px;
     }
     100% {
-      height: 27.5px;
+      opacity: 1;
+      height: 17.5px;
     }
   }
 }

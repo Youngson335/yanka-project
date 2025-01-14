@@ -24,6 +24,8 @@ export default {
         source.connect(this.gainNode);
         source.start(0);
       }
+
+      this.$router.push("/");
     },
     async loadSound() {
       const response = await fetch(require("@/assets/audio/fx/audio3.mp3"));
@@ -51,13 +53,13 @@ export default {
     padding: 5px 10px;
     font-size: 16px;
     border-radius: 7px;
-    background: rgb(129 145 80);
+    background: rgb(141 52 53);
     font-family: "Comfortaa", sans-serif;
     color: white;
     transition: all 0.4s ease;
     &:disabled {
-      background: rgb(129 145 80);
-      color: rgb(83, 94, 49);
+      background: rgb(141 52 53);
+      color: rgb(208 94 96);
     }
   }
 }

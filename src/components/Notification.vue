@@ -229,7 +229,7 @@ export default {
       content: "1";
       width: 25px;
       height: 25px;
-      background-color: rgb(129 145 80);
+      background-color: rgb(109, 35, 36);
       color: white;
       position: absolute;
       top: -3px;

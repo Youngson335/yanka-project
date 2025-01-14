@@ -21,7 +21,7 @@ export default {
     setTimeout(() => {
       faceID.classList.add("face-id__hidden");
       this.showFaceId = false;
-    }, 3700);
+    }, 3500);
   },
   watch: {
     showFaceId(newVal) {

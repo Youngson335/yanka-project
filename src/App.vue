@@ -1,50 +1,48 @@
 <template>
-  <transition name="bounce">
-    <div class="app__description" v-if="showDescription">
-      <Description />
-    </div>
-  </transition>
-  <HomePage v-if="!showDescription" />
   <div class="movie__back">
     <img src="./assets/background/back6.jpeg" alt="" />
   </div>
-  <router-view />
+  <router-view @hiddenMenu="showMenu = $event" />
+  <Menu
+    v-if="currentPath !== '/hello' && showMenu === true"
+    :checkRoute="checkPathInProfile"
+  />
 </template>
 
 <script>
-import HomePage from "./pages/HomePage.vue";
-import Description from "./components/Modals/Description.vue";
-import { mapGetters } from "vuex";
-
+import Menu from "./components/Menu/Menu.vue";
 export default {
   components: {
-    HomePage,
-    Description,
+    Menu,
   },
   data() {
     return {
-      showDescription: true,
+      currentPath: this.$route.path,
+      showMenu: true,
     };
   },
-  computed: {
-    ...mapGetters(["getConfirmAccept"]),
-  },
   watch: {
-    getConfirmAccept: {
-      immediate: true,
-      handler(newValue) {
-        this.checkConfirmAccept(newValue);
-      },
+    $route(to) {
+      this.currentPath = to.path;
     },
   },
-  methods: {
-    checkConfirmAccept(value) {
-      this.showDescription = !value;
+  computed: {
+    checkPathInProfile() {
+      if (this.currentPath === "/profile") {
+        return {
+          id: 3,
+          title: "Назад",
+          path: "/",
+        };
+      } else {
+        return null;
+      }
     },
   },
-
   mounted() {
-    this.checkConfirmAccept(this.getConfirmAccept);
+    if (localStorage.getItem("modalState") === null) {
+      this.$router.push("/hello");
+    }
   },
 };
 </script>
@@ -56,7 +54,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #f4f0f0;
-  background-color: rgb(0 0 0 / 45%);
+  // background-color: rgb(0 0 0 / 45%);
   height: 100vh;
   user-select: none;
 }
@@ -68,6 +66,19 @@ export default {
 }
 button {
   user-select: none;
+  font-family: "Comfortaa", sans-serif;
+}
+input,
+textarea {
+  font-family: "Comfortaa", sans-serif;
+  font-size: 16px;
+  background: none;
+  border: none;
+  color: white;
+  outline: none; /* Убираем обводку при фокусе */
+  padding: 0; /* Убираем внутренние отступы */
+  margin: 0; /* Убираем внешние отступы */
+  border-bottom: 0.5px solid white;
 }
 body {
   overflow: hidden;

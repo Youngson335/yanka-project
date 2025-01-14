@@ -133,7 +133,11 @@ const actions = {
         commit("setNotificationMessage", "Вы мне нравитесь!)");
         break;
       case "activeDate14":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        commit("setCompliments", ["Я готов вас просто слушать)", img5]);
+        commit(
+          "setNotificationMessage",
+          "Даже если для меня это не актуальная тема!)"
+        );
         break;
       case "activeDate15":
         commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);

@@ -31,11 +31,12 @@
           </div>
         </div>
       </div>
+      <Grade
+        class="grade__component"
+        :showReaction="showReaction"
+        @checkLocalReaction="updateShowReaction($event)"
+      />
     </div>
-    <!-- <div class="card__cat" v-if="showCat">
-      <video src="../assets/cat-compliment.webm"></video>
-    </div> -->
-    <Grade class="grade__component" :showReaction="showReaction" />
   </div>
 </template>
 
@@ -53,6 +54,7 @@ export default {
       canFlip: true, // новое свойство для контроля возможности выбора карточки
       dateStorage: new Date().getDate(),
       openCard: null,
+      hiddenReaction: true,
     };
   },
   components: {
@@ -75,6 +77,9 @@ export default {
     },
   },
   methods: {
+    updateShowReaction(val) {
+      this.$emit("checkLocalReaction", val);
+    },
     async loadSound() {
       const response = await fetch(require("@/assets/audio/fx/audio4.mp3"));
       const arrayBuffer = await response.arrayBuffer();
@@ -237,7 +242,7 @@ export default {
   }
 
   &__front {
-    background-color: rgb(63 63 63 / 52%);
+    background-color: rgb(109 35 36 / 14%);
     color: #efefef;
     border: 1px solid #b6b6b6;
     font-weight: bold;
@@ -265,7 +270,7 @@ export default {
     &--text {
       font-size: 20px;
       font-weight: 900;
-      text-align: start;
+      text-align: center;
       // margin-top: 10px;
       // margin-left: 10px;
       margin-right: 10px;
@@ -347,5 +352,8 @@ export default {
   background: white;
   padding: 5px;
   border-radius: 20px;
+  left: 0;
+  bottom: -80px;
+  box-shadow: 0px 0px 20px #000000;
 }
 </style>
