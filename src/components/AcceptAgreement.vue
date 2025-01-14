@@ -55,7 +55,7 @@ export default {
     margin-bottom: 10px;
   }
   &__text {
-    color: rgb(129 145 80);
+    color: rgb(208 94 96);
     font-size: 14px;
     max-width: 200px;
     text-align: start;

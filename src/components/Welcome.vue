@@ -77,7 +77,7 @@ export default {
     line-height: 60px;
     animation: showTitle 0.8s ease;
     span {
-      color: rgb(138 89 156);
+      color: rgb(208 94 96);
     }
     @keyframes showTitle {
       0% {

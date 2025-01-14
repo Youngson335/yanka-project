@@ -157,7 +157,7 @@ export default {
       font-family: "Comfortaa", sans-serif;
       padding: 10px;
       border: none;
-      background-color: rgb(138 89 156);
+      background-color: rgb(109, 35, 36);
       color: white;
       width: 300px;
       transition: all 0.2s ease;
