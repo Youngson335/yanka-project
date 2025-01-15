@@ -6,7 +6,6 @@
         <button>
           {{ startText }}
         </button>
-        <!-- <img src="../assets/cats-stiker/4.png" alt="" /> -->
         <img src="../assets/new_version_material/characters/tigr.webp" alt="" />
       </div>
     </div>
@@ -15,6 +14,10 @@
 
 <script>
 import UpdateDescription from "./Modals/UpdateDescription.vue";
+import playSound from "@/audio-scripts/playSoundOnClick";
+import audio3 from "../assets/audio/fx/audio3.mp3";
+import startBackgroundAudio from "@/audio-scripts/backgroundAudio";
+import vibrateDevice from "@/audio-scripts/vibrate";
 export default {
   components: {
     UpdateDescription,
@@ -24,15 +27,24 @@ export default {
       startText: "Начать",
       showBtn: true,
       isTest: true,
+      playSound,
+      startBackgroundAudio,
+      vibrateDevice,
     };
   },
   methods: {
-    startGames() {
+    async startGames() {
+      this.playSound(audio3, 1);
+      this.vibrateDevice(200);
+      await this.startBackgroundAudio();
+
       localStorage.setItem("startApp", true);
       this.$refs.start.classList.add("start__animate");
+
       setTimeout(() => {
         this.$refs.start.style.display = "none";
       }, 500);
+
       setTimeout(() => {
         this.$emit("startApp");
         this.showBtn = false;

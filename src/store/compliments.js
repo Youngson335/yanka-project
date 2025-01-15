@@ -140,7 +140,8 @@ const actions = {
         );
         break;
       case "activeDate15":
-        commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
+        commit("setCompliments", ["Вы просто ооооооооочень красивая)", img7]);
+        commit("setNotificationMessage", "Я не перестану это говорить!");
         break;
       case "activeDate16":
         commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);

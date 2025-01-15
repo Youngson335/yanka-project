@@ -11,6 +11,8 @@
   </div>
 </template>
 <script>
+import audio2 from "../../assets/audio/fx/audio2.mp3";
+import playSound from "@/audio-scripts/playSoundOnClick";
 export default {
   data() {
     return {
@@ -18,6 +20,7 @@ export default {
         { id: 1, title: "Главная", route: "/" },
         { id: 2, title: "Профиль", route: "/profile" },
       ],
+      playSound,
     };
   },
   props: {
@@ -28,6 +31,7 @@ export default {
   methods: {
     goToPage(path) {
       this.$router.push(path);
+      this.playSound(audio2, 1);
     },
   },
 };
