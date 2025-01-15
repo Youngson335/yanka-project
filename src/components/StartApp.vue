@@ -1,5 +1,5 @@
 <template>
-  <div ref="start" class="start" v-if="showBtn === true">
+  <!-- <div ref="start" class="start" v-if="showBtn === true">
     <UpdateDescription class="start__info" />
     <div class="start__btn" @click="startGames">
       <div class="start__btn--block">
@@ -9,6 +9,10 @@
         <img src="../assets/new_version_material/characters/tigr.webp" alt="" />
       </div>
     </div>
+  </div> -->
+
+  <div>
+    <h1>Приложение пока что в разработке</h1>
   </div>
 </template>
 
@@ -17,7 +21,6 @@ import UpdateDescription from "./Modals/UpdateDescription.vue";
 import playSound from "@/audio-scripts/playSoundOnClick";
 import audio3 from "../assets/audio/fx/audio3.mp3";
 import startBackgroundAudio from "@/audio-scripts/backgroundAudio";
-import vibrateDevice from "@/audio-scripts/vibrate";
 export default {
   components: {
     UpdateDescription,
@@ -29,13 +32,11 @@ export default {
       isTest: true,
       playSound,
       startBackgroundAudio,
-      vibrateDevice,
     };
   },
   methods: {
     async startGames() {
       this.playSound(audio3, 1);
-      this.vibrateDevice(200);
       await this.startBackgroundAudio();
 
       localStorage.setItem("startApp", true);
