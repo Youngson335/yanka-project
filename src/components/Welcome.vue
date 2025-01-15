@@ -8,20 +8,19 @@
     <div class="welcome__stop" v-else>
       <h2>{{ getUserName }}, спокойной ночи! Возвращайся завтра😴</h2>
     </div>
-    <audio ref="backgroundAudio" loop>
-      <source src="../assets/audio/atmosphere.wav" type="audio/wav" />
-    </audio>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
+import startBackgroundAudio from "@/audio-scripts/backgroundAudio";
 export default {
   data() {
     return {
       welcomeText: "",
       stopGame: false,
+      startAudio: startBackgroundAudio,
     };
   },
   computed: {
@@ -50,20 +49,14 @@ export default {
       }, 800);
     },
   },
-  mounted() {
+  async mounted() {
     if (this.$refs.welcomeTrue) {
       this.addDefaultClass();
     }
     console.log(this.$refs.welcomeTrue);
     this.initUserTg();
 
-    // Установка громкости
-    this.$refs.backgroundAudio.volume = 0.1; // Установите громкость на 10%
-    console.log("Громкость аудио:", this.$refs.backgroundAudio.volume); // Проверка громкости
-
-    this.$refs.backgroundAudio.play().catch((error) => {
-      console.error("Ошибка воспроизведения аудио:", error);
-    });
+    // await this.startAudio();
   },
 };
 </script>

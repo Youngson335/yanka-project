@@ -51,6 +51,7 @@ export default {
   box-shadow: 1px -2px 10px #5c5a5a8a;
   overflow: hidden;
   animation: showModalFaceId 1s ease;
+  z-index: 10000;
   &__item {
     display: flex;
     justify-content: center;

@@ -44,6 +44,9 @@
 import { nextTick } from "vue";
 import { mapGetters } from "vuex";
 import Grade from "./Grade.vue";
+// import getAudioContext from "@/audio-scripts/audioContext";
+// import loadSound from "@/audio-scripts/loadSound";
+// import audioConnectAndStart from "@/audio-scripts/audioConnectAndStart";
 
 export default {
   data() {
@@ -55,6 +58,9 @@ export default {
       dateStorage: new Date().getDate(),
       openCard: null,
       hiddenReaction: true,
+      // checkAudioContext: getAudioContext,
+      // loadingSound: loadSound,
+      // checkAudioConnect: audioConnectAndStart,
     };
   },
   components: {
@@ -80,17 +86,9 @@ export default {
     updateShowReaction(val) {
       this.$emit("checkLocalReaction", val);
     },
-    async loadSound() {
-      const response = await fetch(require("@/assets/audio/fx/audio4.mp3"));
-      const arrayBuffer = await response.arrayBuffer();
-      this.audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
-    },
     flipCard(id) {
       if (this.audioBuffer) {
-        const source = this.audioContext.createBufferSource();
-        source.buffer = this.audioBuffer;
-        source.connect(this.gainNode);
-        source.start(0);
+        // this.checkAudioConnect();
       }
       this.$emit("showNot", true);
       this.showCat = true;
@@ -180,12 +178,10 @@ export default {
     }, 1000);
   },
   async created() {
-    this.audioContext = new (window.AudioContext ||
-      window.webkitAudioContext)();
-    this.gainNode = this.audioContext.createGain();
-    this.gainNode.gain.value = 0.2;
-    this.gainNode.connect(this.audioContext.destination);
-    await this.loadSound();
+    // await this.checkAudioContext(0.2);
+    // await this.loadingSound(
+    //   await fetch(require("@/assets/audio/fx/audio4.mp3"))
+    // );
   },
 };
 </script>
