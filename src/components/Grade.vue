@@ -64,11 +64,14 @@ export default {
   },
   methods: {
     checkShowReaction() {
-      this.playSound(audio3, 0.5);
+      if (!this.showReactions) {
+        this.playSound(audio3, 0.5);
+      }
       this.showReactions = true;
     },
     setNewReaction(reaction) {
       this.playSound(audio2, 1);
+
       this.activeReaction = reaction;
       localStorage.setItem(
         `active-reaction${this.getActiveDate}`,
