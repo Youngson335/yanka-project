@@ -1,5 +1,5 @@
 <template>
-  <!-- <div ref="start" class="start" v-if="showBtn === true">
+  <div ref="start" class="start" v-if="showBtn === true">
     <UpdateDescription class="start__info" />
     <div class="start__btn" @click="startGames">
       <div class="start__btn--block">
@@ -9,11 +9,11 @@
         <img src="../assets/new_version_material/characters/tigr.webp" alt="" />
       </div>
     </div>
-  </div> -->
-
-  <div>
-    <h1>Приложение пока что в разработке</h1>
   </div>
+
+  <!-- <div>
+    <h1>Приложение пока что в разработке</h1>
+  </div> -->
 </template>
 
 <script>
