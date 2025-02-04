@@ -46,6 +46,8 @@ import Grade from "./Grade.vue";
 // import getAudioContext from "@/audio-scripts/audioContext";
 // import loadSound from "@/audio-scripts/loadSound";
 // import audioConnectAndStart from "@/audio-scripts/audioConnectAndStart";
+import audio4 from "@/assets/audio/fx/audio4.mp3";
+import playSound from "@/audio-scripts/playSoundOnClick";
 
 export default {
   data() {
@@ -57,6 +59,7 @@ export default {
       dateStorage: new Date().getDate(),
       openCard: null,
       hiddenReaction: true,
+      playSound,
       // checkAudioContext: getAudioContext,
       // loadingSound: loadSound,
       // checkAudioConnect: audioConnectAndStart,
@@ -86,9 +89,7 @@ export default {
       this.$emit("checkLocalReaction", val);
     },
     flipCard(id) {
-      if (this.audioBuffer) {
-        // this.checkAudioConnect();
-      }
+      this.playSound(audio4, 0.3);
       this.$emit("showNot", true);
       this.showCat = true;
 
@@ -349,7 +350,7 @@ export default {
   padding: 5px;
   border-radius: 20px;
   left: 0;
-  bottom: -100px;
+  bottom: -105px;
   box-shadow: 0px 0px 20px #000000;
 }
 </style>
