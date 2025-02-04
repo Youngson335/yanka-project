@@ -26,8 +26,7 @@
             </p>
           </div>
           <div class="card__back--image">
-            <!-- <img :src="card.img" alt="" /> -->
-            <video :src="card.img" autoplay muted loop></video>
+            <img :src="card.img" alt="" />
           </div>
         </div>
       </div>
@@ -275,9 +274,10 @@ export default {
       display: flex;
       justify-content: end;
       align-items: center;
-      // & img {
-      //   width: 70px;
-      // }
+      & img {
+        width: 70px;
+        border-radius: 20px;
+      }
       & video {
         width: 60px;
         border-radius: 20px;
@@ -349,7 +349,7 @@ export default {
   padding: 5px;
   border-radius: 20px;
   left: 0;
-  bottom: -80px;
+  bottom: -100px;
   box-shadow: 0px 0px 20px #000000;
 }
 </style>
