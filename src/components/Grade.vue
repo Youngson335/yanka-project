@@ -3,7 +3,7 @@
     <div
       class="grade__title"
       v-if="!showReactions && activeReaction === null"
-      @click="showReactions = true"
+      @click="checkShowReaction"
     >
       <p>оценить</p>
     </div>
@@ -31,6 +31,9 @@ import reaction2 from "../assets/new_version_material/reaction/reaction-2.webp";
 import reaction3 from "../assets/new_version_material/reaction/reaction-3.webp";
 import reaction4 from "../assets/new_version_material/reaction/reaction-4.webp";
 import reaction5 from "../assets/new_version_material/reaction/reaction-5.webp";
+import audio3 from "@/assets/audio/fx/audio3.mp3";
+import audio2 from "@/assets/audio/fx/audio2.mp3";
+import playSound from "@/audio-scripts/playSoundOnClick";
 import { mapGetters } from "vuex";
 export default {
   data() {
@@ -45,6 +48,7 @@ export default {
       showReactions: false,
       activeReaction: null,
       selectReaction: false,
+      playSound,
     };
   },
   props: {
@@ -59,7 +63,12 @@ export default {
     },
   },
   methods: {
+    checkShowReaction() {
+      this.playSound(audio3, 0.5);
+      this.showReactions = true;
+    },
     setNewReaction(reaction) {
+      this.playSound(audio2, 1);
       this.activeReaction = reaction;
       localStorage.setItem(
         `active-reaction${this.getActiveDate}`,
