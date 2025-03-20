@@ -6,13 +6,20 @@
       <div v-if="appSleep === false">
         <EntryText />
         <DateBtn @editStateShowCard="editStateShowCard" />
-        <Card
-          :showCard="showCard"
-          v-if="showCard === true"
-          @showNot="showNot"
-          :showReaction="showReaction"
-          @checkLocalReaction="showReaction = $event"
-        />
+        <div>
+          <PasswordInput
+            v-model="password"
+            @updatePasswordState="isValidPassword = $event"
+            v-if="showCard && !isValidPassword"
+          />
+          <Card
+            :showCard="showCard"
+            v-if="showCard === true && isValidPassword"
+            @showNot="showNot"
+            :showReaction="showReaction"
+            @checkLocalReaction="showReaction = $event"
+          />
+        </div>
         <Notification
           v-if="showNotification"
           @showFaceId="showFaceId = $event"
@@ -38,6 +45,7 @@ import { mapGetters } from "vuex";
 import Notification from "@/components/Notification.vue";
 import StartApp from "@/components/StartApp.vue";
 import FaceId from "@/components/FaceId.vue";
+import PasswordInput from "@/components/Inputs/PasswordInput.vue";
 // import RunGIF from "@/components/RunGIF.vue";
 
 export default {
@@ -50,6 +58,7 @@ export default {
     Notification,
     StartApp,
     FaceId,
+    PasswordInput,
     // RunGIF,
   },
   data() {
@@ -62,6 +71,8 @@ export default {
       showFaceId: false,
       checkFaceId: false,
       showReaction: false,
+      password: "",
+      isValidPassword: false,
     };
   },
   computed: {

@@ -141,16 +141,16 @@ const actions = {
         commit("setNotificationMessage", "Мы скоро сами станем котиками 😅");
         break;
       case "activeDate20":
-        commit("setCompliments", ["Я рад, когда ты радуешься!", img4]);
-        commit("setNotificationMessage", "И наоборот");
+        commit("setCompliments", ["У меня есть вопрос...", img10]);
+        commit("setNotificationMessage", "Ты выйдешь за меня?)");
         break;
       case "activeDate21":
-        commit("setCompliments", ["будешь чоколадку?", img5]);
-        commit("setNotificationMessage", "и мне захвати пожалуйста 😅");
+        commit("setCompliments", ["У меня есть вопрос...", img10]);
+        commit("setNotificationMessage", "Ты выйдешь за меня?)");
         break;
       case "activeDate22":
-        commit("setCompliments", ["У тебя прекрасные родители)", img6]);
-        commit("setNotificationMessage", "Голосовые твоей мамы - 🥰");
+        commit("setCompliments", ["У меня есть вопрос...", img10]);
+        commit("setNotificationMessage", "Ты выйдешь за меня?)");
         break;
       case "activeDate23":
         commit("setCompliments", [
