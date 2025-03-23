@@ -153,11 +153,8 @@ const actions = {
         commit("setNotificationMessage", "Ты выйдешь за меня?)");
         break;
       case "activeDate23":
-        commit("setCompliments", [
-          "Не стесняйся, когда говорят тебе комплименты)",
-          img7,
-        ]);
-        commit("setNotificationMessage", "Ведь ты их заслуживаешь))");
+        commit("setCompliments", ["У меня есть вопрос...", img10]);
+        commit("setNotificationMessage", "Ты выйдешь за меня?)");
         break;
       case "activeDate24":
         commit("setCompliments", [
