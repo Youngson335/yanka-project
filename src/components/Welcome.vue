@@ -27,17 +27,23 @@ export default {
     ...mapGetters(["getUserName"]),
     getGreeting() {
       const currentHour = new Date().getHours();
+      const currentMinutes = new Date().getMinutes();
 
-      if (currentHour >= 6 && currentHour < 12) {
+      if (
+        (currentHour === 23 && currentMinutes >= 59) ||
+        (currentHour >= 0 && currentHour < 6)
+      ) {
+        this.stopGame = true;
+        this.$emit("sleepApp");
+        return "Спокойной ночи";
+      } else if (currentHour >= 6 && currentHour < 12) {
         return "Доброе утро";
       } else if (currentHour >= 12 && currentHour < 17) {
         return "Добрый день";
       } else if (currentHour >= 17 && currentHour < 23) {
         return "Добрый вечер";
       } else {
-        this.stopGame = true;
-        this.$emit("sleepApp");
-        return "Спокойной ночи";
+        return "Добрый вечер";
       }
     },
   },

@@ -6,13 +6,15 @@
       <div v-if="appSleep === false">
         <EntryText />
         <DateBtn @editStateShowCard="editStateShowCard" />
-        <Card
-          :showCard="showCard"
-          v-if="showCard === true"
-          @showNot="showNot"
-          :showReaction="showReaction"
-          @checkLocalReaction="showReaction = $event"
-        />
+        <div>
+          <Card
+            :showCard="showCard"
+            v-if="showCard === true && isValidPassword"
+            @showNot="showNot"
+            :showReaction="showReaction"
+            @checkLocalReaction="showReaction = $event"
+          />
+        </div>
         <Notification
           v-if="showNotification"
           @showFaceId="showFaceId = $event"
@@ -38,6 +40,7 @@ import { mapGetters } from "vuex";
 import Notification from "@/components/Notification.vue";
 import StartApp from "@/components/StartApp.vue";
 import FaceId from "@/components/FaceId.vue";
+import PasswordInput from "@/components/Inputs/PasswordInput.vue";
 // import RunGIF from "@/components/RunGIF.vue";
 
 export default {
@@ -50,11 +53,12 @@ export default {
     Notification,
     StartApp,
     FaceId,
+    PasswordInput,
     // RunGIF,
   },
   data() {
     return {
-      showCard: false,
+      showCard: true,
       showNotification: false,
       showApp: false,
       appSleep: false,
@@ -62,6 +66,8 @@ export default {
       showFaceId: false,
       checkFaceId: false,
       showReaction: false,
+      password: "",
+      isValidPassword: true,
     };
   },
   computed: {
@@ -100,7 +106,7 @@ export default {
 
     localStorage.setItem(
       `activeDate${this.getActiveDate}`,
-      `activeDate${this.getActiveDate}`
+      `activeDate${this.getActiveDate}`,
     );
     this.$store.dispatch("compliments/updateCompliments");
     if (
