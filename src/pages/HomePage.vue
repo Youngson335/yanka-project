@@ -7,11 +7,6 @@
         <EntryText />
         <DateBtn @editStateShowCard="editStateShowCard" />
         <div>
-          <PasswordInput
-            v-model="password"
-            @updatePasswordState="isValidPassword = $event"
-            v-if="showCard && !isValidPassword"
-          />
           <Card
             :showCard="showCard"
             v-if="showCard === true && isValidPassword"
@@ -63,7 +58,7 @@ export default {
   },
   data() {
     return {
-      showCard: false,
+      showCard: true,
       showNotification: false,
       showApp: false,
       appSleep: false,
@@ -72,7 +67,7 @@ export default {
       checkFaceId: false,
       showReaction: false,
       password: "",
-      isValidPassword: false,
+      isValidPassword: true,
     };
   },
   computed: {
@@ -111,7 +106,7 @@ export default {
 
     localStorage.setItem(
       `activeDate${this.getActiveDate}`,
-      `activeDate${this.getActiveDate}`
+      `activeDate${this.getActiveDate}`,
     );
     this.$store.dispatch("compliments/updateCompliments");
     if (

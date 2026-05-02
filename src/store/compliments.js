@@ -44,161 +44,151 @@ const mutations = {
 const actions = {
   updateCompliments({ commit, state }) {
     const cardId = localStorage.getItem(`activeDate${state.activeDate}`);
-    console.log("cardID", cardId);
     switch (cardId) {
       case "activeDate1":
-        commit("setCompliments", ["Вы меня вдохновляете!", img2]);
-        commit("setNotificationMessage", "Вы - моя мотивация работать!");
+        commit("setCompliments", ["Ты очень милая!", img2]);
+        commit("setNotificationMessage", "При виде тебя умиляюсь");
         break;
       case "activeDate2":
-        commit("setCompliments", ["Ты очень смешная))", img3]);
-        commit("setNotificationMessage", "Мне с тобой очень весело!)");
+        commit("setCompliments", ["Бог тебя любит", img3]);
+        commit("setNotificationMessage", "И всегда тебя поддерживает!");
         break;
       case "activeDate3":
-        commit("setCompliments", ["Вы меня вдохновляете!", img4]);
-        commit("setNotificationMessage", "Вы - моя мотивация работать!");
+        commit("setCompliments", ["Ты моя опора", img4]);
+        commit("setNotificationMessage", "Стремлюсь быть взаимной опорой");
         break;
       case "activeDate4":
-        commit("setCompliments", ["Ты очень смешная))", img5]);
-        commit("setNotificationMessage", "Мне с тобой очень весело!)");
+        commit("setCompliments", ["Ты просто секс", img5]);
+        commit("setNotificationMessage", "Может секс?");
         break;
       case "activeDate5":
-        commit("setCompliments", ["Вы стали частью...", img6]);
-        commit("setNotificationMessage", "Частью моей жизни)");
-        break;
-      case "activeDate6":
-        commit("setCompliments", ["А кто тут у нас умница?", img7]);
-        commit("setNotificationMessage", "Это Яна у нас умница)");
-        break;
-      case "activeDate7":
-        commit("setCompliments", ["А кто эта красивая девушка?)", img8]);
+        commit("setCompliments", ["Боюсь тебя потерять", img6]);
         commit(
           "setNotificationMessage",
-          "Ой, это же Яна Витальевна такая красивая)"
+          "Сразу становится грустно от таких мыслей",
         );
         break;
+      case "activeDate6":
+        commit("setCompliments", ["Ты золото", img7]);
+        commit("setNotificationMessage", "Уникальна и ценна!");
+        break;
+      case "activeDate7":
+        commit("setCompliments", ["Не люблю с тобой ссориться...", img8]);
+        commit("setNotificationMessage", "Но люблю мириться!");
+        break;
       case "activeDate8":
-        commit("setCompliments", ["Я хочу от вас сегодня кружочки)", img9]);
-        commit("setNotificationMessage", "Сам тоже буду отправлять)");
+        commit("setCompliments", ["Не унывай", img9]);
+        commit("setNotificationMessage", "Улыбнись и поблагодари Бога!");
         break;
       case "activeDate9":
-        commit("setCompliments", ["Я готов вас просто слушать)", img10]);
+        commit("setCompliments", ["Будь мудрой женой", img10]);
         commit(
           "setNotificationMessage",
-          "Даже если для меня это не актуальная тема!)"
+          "Начинай свой день с Библии и молитвы)",
         );
         break;
       case "activeDate10":
-        commit("setCompliments", [
-          "Мне нравится называть тебя козявкой)",
-          img11,
-        ]);
-        commit("setNotificationMessage", "Это звучит мило))");
+        commit("setCompliments", ["Не могу представить жизни без тебя", img11]);
+        commit("setNotificationMessage", "Ведь ты исполнила мою мечту");
         break;
       case "activeDate11":
-        commit("setCompliments", ["Хорошей вам работы)", img12]);
-        commit(
-          "setNotificationMessage",
-          "Надеюсь, что вы не устанете сегодня)"
-        );
+        commit("setCompliments", ["Ты очень вкусно готовишь", img12]);
+        commit("setNotificationMessage", "Мне очень повезло");
         break;
       case "activeDate12":
-        commit("setCompliments", ["Вы просто ооооооооочень красивая)", img13]);
-        commit("setNotificationMessage", "Я не перестану это говорить!");
-        break;
-      case "activeDate13":
-        commit("setCompliments", ["Хотите правду?", img14]);
-        commit("setNotificationMessage", "Вы мне нравитесь!)");
-        break;
-      case "activeDate14":
-        commit("setCompliments", ["Приближается наша встреча", img15]);
+        commit("setCompliments", [
+          "Я рад, что Бог тебя активно использует",
+          img13,
+        ]);
         commit(
           "setNotificationMessage",
-          "Даже не верится, что увижу тебя вживую!"
+          "Очень приятно видеть свою жену в служении",
         );
         break;
+      case "activeDate13":
+        commit("setCompliments", ["Бог нас благословил", img14]);
+        commit("setNotificationMessage", "И еще благословит)");
+        break;
+      case "activeDate14":
+        commit("setCompliments", ["Ты будешь прекрасной мамой", img15]);
+        commit("setNotificationMessage", "И ты прекрасная жена");
+        break;
       case "activeDate15":
-        commit("setCompliments", ["Ты классная хозяйка", img16]);
-        commit("setNotificationMessage", "И я этому ой как радуюсь");
+        commit("setCompliments", ["Не томись о прошлом", img16]);
+        commit("setNotificationMessage", "Бог дает тебе самое лучшее, поверь");
         break;
       case "activeDate16":
-        commit("setCompliments", ["ошибка... хотя не, шутка)", img17]);
-        commit("setNotificationMessage", "Просто пришли мне кружочек)");
+        commit("setCompliments", ["Хочу тебя ", img17]);
+        commit("setNotificationMessage", "и кофи...");
         break;
       case "activeDate17":
-        commit("setCompliments", [
-          "Я считаю свои благословения... и ты в этом списке)",
-          img1,
-        ]);
-        commit("setNotificationMessage", "Не на последнем месте))");
+        commit("setCompliments", ["Твой муж не Соломон", img1]);
+        commit("setNotificationMessage", "Ему все классно с одной женой");
         break;
       case "activeDate18":
-        commit("setCompliments", ["Иногда мне тяжело", img2]);
-        commit("setNotificationMessage", "Но ты меня ободряешь)");
+        commit("setCompliments", ["Будет тяжело", img2]);
+        commit("setNotificationMessage", "Но мы все приодолеем");
         break;
       case "activeDate19":
-        commit("setCompliments", ["Твои утренние котики - красота)", img3]);
-        commit("setNotificationMessage", "Мы скоро сами станем котиками 😅");
+        commit("setCompliments", ["Я тебя люблю", img3]);
+        commit("setNotificationMessage", "И еще раз люблю");
         break;
       case "activeDate20":
         commit("setCompliments", ["У меня есть вопрос...", img10]);
-        commit("setNotificationMessage", "Ты выйдешь за меня?)");
+        commit("setNotificationMessage", "Сделаешь мне кофе?");
         break;
       case "activeDate21":
         commit("setCompliments", ["У меня есть вопрос...", img10]);
-        commit("setNotificationMessage", "Ты выйдешь за меня?)");
+        commit("setNotificationMessage", "Сделать тебе кофе?");
         break;
       case "activeDate22":
-        commit("setCompliments", ["У меня есть вопрос...", img10]);
-        commit("setNotificationMessage", "Ты выйдешь за меня?)");
+        commit("setCompliments", ["Твоя жизнь крутаааа-ааа", img10]);
+        commit("setNotificationMessage", "Ты дочь Христааааа-ааа");
         break;
       case "activeDate23":
-        commit("setCompliments", ["У меня есть вопрос...", img10]);
-        commit("setNotificationMessage", "Ты выйдешь за меня?)");
+        commit("setCompliments", ["Не торопи события", img10]);
+        commit("setNotificationMessage", "У Бога все в свое время");
         break;
       case "activeDate24":
-        commit("setCompliments", [
-          "Я готов поддержать тебя в любой момент!",
-          img8,
-        ]);
-        commit("setNotificationMessage", "Просто напиши/позвони");
+        commit("setCompliments", ["Хорошо, что наши ссоры именно такие", img8]);
+        commit("setNotificationMessage", "Без них мы бы выросли)");
         break;
       case "activeDate25":
-        commit("setCompliments", ["Ты очень мудрая!", img9]);
-        commit("setNotificationMessage", "На пол года меня старше все таки)");
+        commit("setCompliments", [
+          "Не забывай, для чего тебя создал Бог",
+          img9,
+        ]);
+        commit("setNotificationMessage", "И мне напоминай)");
         break;
       case "activeDate26":
-        commit("setCompliments", ["Ты красивая)", img10]);
-        commit("setNotificationMessage", "Жду кружочек!)");
+        commit("setCompliments", ["Ты как instagramm", img10]);
+        commit(
+          "setNotificationMessage",
+          "Нужен особый подход к взаимодействию с тобой)",
+        );
         break;
       case "activeDate27":
-        commit("setCompliments", [
-          "Ну все, я привык к твоим голосовым)",
-          img11,
-        ]);
-        commit(
-          "setNotificationMessage",
-          "Доводим дело до конца с Божьей помощью!"
-        );
+        commit("setCompliments", ["Ты как telegram", img11]);
+        commit("setNotificationMessage", "Идеальна!");
         break;
       case "activeDate28":
-        commit("setCompliments", ["Ты умница!", img12]);
-        commit("setNotificationMessage", "Даже когда держишь неудачи)");
+        commit("setCompliments", ["Я молюсь о тебе", img12]);
+        commit("setNotificationMessage", "Надеюсь, что ты тоже)");
         break;
       case "activeDate29":
-        commit("setCompliments", ["Я восхищен!", img13]);
-        commit("setNotificationMessage", "Я еще раз восхищен!");
+        commit("setCompliments", ["Ты моя сладкая булочка", img13]);
+        commit("setNotificationMessage", "Мне тебя всегда мало!");
         break;
       case "activeDate30":
-        commit("setCompliments", ["Надеюсь скоро увидимся)", img14]);
-        commit("setNotificationMessage", "Не много даже волнуюсь))");
-        break;
-      case "activeDate31":
-        commit("setCompliments", ["Ты ооочень милая)", img15]);
+        commit("setCompliments", ["Ты как программирование", img14]);
         commit(
           "setNotificationMessage",
-          "Я не могу это в словах даже передать!)"
+          "Иногда легко, но и тяжело тоже бывает)",
         );
+        break;
+      case "activeDate31":
+        commit("setCompliments", ["Я люблю Бога", img15]);
+        commit("setNotificationMessage", "А Бог любит меня и дал мне тебя!");
         break;
       default:
         commit("setCompliments", ["ошибка, отпиши мне в телеграм"]);
